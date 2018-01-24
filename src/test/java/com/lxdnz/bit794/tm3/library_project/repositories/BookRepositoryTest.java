@@ -2,7 +2,7 @@ package com.lxdnz.bit794.tm3.library_project.repositories;
 
 import com.lxdnz.bit794.tm3.library_project.configuration.RepositoryConfiguration;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.Book;
-import com.lxdnz.bit794.tm3.library_project.persistence.repo.BookRepository;
+import com.lxdnz.bit794.tm3.library_project.persistence.repos.BookRepository;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

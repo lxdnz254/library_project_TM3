@@ -1,7 +1,7 @@
 package com.lxdnz.bit794.tm3.library_project.web;
 
 import com.lxdnz.bit794.tm3.library_project.persistence.model.Book;
-import com.lxdnz.bit794.tm3.library_project.persistence.service.BookService;
+import com.lxdnz.bit794.tm3.library_project.services.BookService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
