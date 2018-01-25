@@ -14,7 +14,8 @@
                     <ul class="nav navbar-nav">
                         <li><a href="#" th:href="@{/books}">Books</a></li>
                         <li><a href="#" th:href="@{/book/new}" sec:authorize="hasAuthority('ADMIN')">Add Book</a></li>
-                        <li><a href="#" th:href="@{/login}">Sign In</a></li>
+                        <li th:if="${#authorization.expression('isAuthenticated()')}"><a th:href="@{/logout}">Sign Out</a></li>
+                        <li th:if="${#authorization.expression('!isAuthenticated()')}"><a th:href="@{/login}">Sign In</a></li>
                     </ul>
                 </div>
             </div>
@@ -25,9 +26,9 @@
         <div class="jumbotron">
             <div class="row text-center">
                 <div class="">
-                    <h2 th:text="${appName}">App Name</h2>
+                    <h3>Waitomo District Council Library Project</h3>
 
-                    <h3>Spring Boot Web App</h3>
+                    <h4>Spring Boot Web App</h4>
                 </div>
             </div>
 

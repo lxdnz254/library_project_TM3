@@ -21,18 +21,25 @@ import static org.junit.Assert.assertNull;
 public class BookRepositoryTest {
 
     private BookRepository bookRepository;
+    long initalCount;
 
     @Autowired
-    public void setBookRepository(BookRepository bookRepository){
+    public void setBookRepository(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
     @Test
     public void testSaveBook() {
+        // get the initial count
+        initalCount = bookRepository.count();
         // setup book
         Book book = new Book();
         book.setTitle("The Bible");
         book.setAuthor("God");
+        // if book already exists delete it
+        if (bookRepository.findByTitle("The Bible") != null) {
+            bookRepository.delete(bookRepository.findByTitle("The Bible"));
+        }
 
         // new Book() auto-generates ID so cannot test for null id beforehand
         // save book, verify has Id value after save
@@ -59,7 +66,7 @@ public class BookRepositoryTest {
 
         // verify count of products in DB
         long bookCount = bookRepository.count();
-        assertEquals(bookCount, 1);
+        assertEquals(bookCount, initalCount+1);
 
         // get all books, list should only have one
         Iterable<Book> books = bookRepository.findAll();
@@ -67,7 +74,11 @@ public class BookRepositoryTest {
         for (Book b: books) {
             count++;
         }
-        assertEquals(count, 1);
+        assertEquals(count, initalCount+1);
+
+        // remove book and assert bookRepo is back to original count
+        bookRepository.delete(book.getId());
+        assertEquals(bookRepository.count(), initalCount);
     }
 
 }

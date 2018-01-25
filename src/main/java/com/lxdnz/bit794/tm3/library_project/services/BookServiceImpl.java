@@ -33,4 +33,14 @@ public class BookServiceImpl implements BookService {
     public void deleteBook(Long id) {
         bookRepository.delete(id);
     }
+
+    @Override
+    public long count() {
+        Iterable<Book> books = listAllBooks();
+        int count =0;
+        for (Book b: books) {
+            count++;
+        }
+        return count;
+    }
 }
