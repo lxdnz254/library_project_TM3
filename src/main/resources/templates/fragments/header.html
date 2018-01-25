@@ -20,18 +20,26 @@
                 </div>
             </div>
         </nav>
-        <div class="welcome">
-            <span sec:authorize="isAuthenticated()">Welcome <span sec:authentication="name"></span></span>
-        </div>
-        <div class="jumbotron">
-            <div class="row text-center">
-                <div class="">
-                    <h3>Waitomo District Council Library Project</h3>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-9">
+                    <div class="jumbotron">
+                        <div class="row text-center">
+                            <div class="">
+                                <h2>Waitomo District Council Library Project</h2>
 
-                    <h4>Spring Boot Web App</h4>
+                                <h3>Spring Boot Web App</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="welcome">
+                        <span sec:authorize="isAuthenticated()">Welcome <span sec:authentication="name"></span></span>
+                        <p class="jumbotron">This is the user container</p>
+                    </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
