@@ -7,19 +7,6 @@
 
 <div class="container">
     <div th:fragment="header">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
-                    <ul class="nav navbar-nav">
-                        <li><a href="#" th:href="@{/books}">Books</a></li>
-                        <li><a href="#" th:href="@{/book/new}" sec:authorize="hasAuthority('ADMIN')">Add Book</a></li>
-                        <li th:if="${#authorization.expression('isAuthenticated()')}"><a th:href="@{/logout}">Sign Out</a></li>
-                        <li th:if="${#authorization.expression('!isAuthenticated()')}"><a th:href="@{/login}">Sign In</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-9">
@@ -35,12 +22,24 @@
                 </div>
                 <div class="col-xs-3">
                     <div class="welcome">
-                        <span sec:authorize="isAuthenticated()">Welcome <span sec:authentication="name"></span></span>
-                        <p class="jumbotron">This is the user container</p>
+                        <p class="jumbotron">Put Sign in/out here</p>
                     </div>
                 </div>
             </div>
         </div>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" th:href="@{/books}">Books</a></li>
+                        <li><a href="#" th:href="@{/book/new}" sec:authorize="hasAuthority('ADMIN')">Add Book</a></li>
+                        <li th:if="${#authorization.expression('isAuthenticated()')}"><a th:href="@{/logout}">Sign Out</a></li>
+                        <li th:if="${#authorization.expression('!isAuthenticated()')}"><a th:href="@{/login}">Sign In</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </div>
 </div>
 </body>

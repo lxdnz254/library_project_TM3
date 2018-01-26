@@ -9,36 +9,37 @@
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-    <div th:if="${not #lists.isEmpty(books)}">
-        <form th:action="@{/logout}" method="post">
-            <div class="col-sm-10"><h2>List of Books</h2></div>
-            <div class="col-sm-2" style="padding-top: 30px;">
+    <div class = "booklist">
+        <div th:if="${not #lists.isEmpty(books)}">
+            <form th:action="@{/logout}" method="post">
+                <div class="col-sm-10"><h2>List of Books</h2></div>
+                <div class="col-sm-2" style="padding-top: 30px;">
                      <span sec:authorize="isAuthenticated()">
                     <input type="submit" value="Sign Out"/>
                                </span>
-            </div>
-        </form>
-        <table class="table table-striped">
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Author(s)</th>
-                <th sec:authorize="hasAnyAuthority('USER','ADMIN')">View</th>
-                <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
-                <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
-            </tr>
-            <tr th:each="book : ${books}">
-                <td th:text="${book.id}"><a href="/book/${book.id}">Id</a></td>
-                <td th:text="${book.title}">Title</td>
-                <td th:text="${book.author}">Author(s)</td>
-                <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a th:href="${'/book/' + book.id}">View</a></td>
-                <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/book/edit/' + book.id}">Edit</a></td>
-                <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/book/delete/' + book.id}">Delete</a></td>
-            </tr>
-        </table>
+                </div>
+            </form>
+            <table class="table table-striped">
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Author(s)</th>
+                    <th sec:authorize="hasAnyAuthority('USER','ADMIN')">View</th>
+                    <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
+                    <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
+                </tr>
+                <tr th:each="book : ${books}">
+                    <td th:text="${book.id}"><a href="/book/${book.id}">Id</a></td>
+                    <td th:text="${book.title}">Title</td>
+                    <td th:text="${book.author}">Author(s)</td>
+                    <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a th:href="${'/book/' + book.id}">View</a></td>
+                    <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/book/edit/' + book.id}">Edit</a></td>
+                    <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/book/delete/' + book.id}">Delete</a></td>
+                </tr>
+            </table>
 
+        </div>
     </div>
-
 </div>
 
 </body>
