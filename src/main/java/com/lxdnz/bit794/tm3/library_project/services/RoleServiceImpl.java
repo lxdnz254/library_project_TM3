@@ -1,6 +1,6 @@
 package com.lxdnz.bit794.tm3.library_project.services;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.Role;
+import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Role;
 import com.lxdnz.bit794.tm3.library_project.persistence.repos.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<?> listAll() {
+    public List<Role> listAll() {
         List<Role> roles = new ArrayList<>();
         roleRepository.findAll().forEach(roles::add);
         return roles;

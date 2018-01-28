@@ -1,6 +1,6 @@
 package com.lxdnz.bit794.tm3.library_project.persistence.repos;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.Book;
+import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Book;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

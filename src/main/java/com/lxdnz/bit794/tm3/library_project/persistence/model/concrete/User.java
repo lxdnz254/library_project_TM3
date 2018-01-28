@@ -1,12 +1,15 @@
-package com.lxdnz.bit794.tm3.library_project.persistence.model;
+package com.lxdnz.bit794.tm3.library_project.persistence.model.concrete;
+
+import com.lxdnz.bit794.tm3.library_project.persistence.model.AbstractModelClass;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class User extends AbstractModelClass{
+public class User extends AbstractModelClass {
 
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Transient

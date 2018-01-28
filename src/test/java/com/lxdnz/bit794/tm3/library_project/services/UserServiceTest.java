@@ -1,8 +1,7 @@
 package com.lxdnz.bit794.tm3.library_project.services;
 
-import com.lxdnz.bit794.tm3.library_project.configuration.ServicesConfiguration;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.Role;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.User;
+import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Role;
+import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class UserServiceTest {
     @Test
     public void testSaveUser() {
         // get roles
-        roles = (List<Role>)roleService.listAll();
+        roles = (List<Role>) roleService.listAll();
         Role role = roles.get(0);
         // set up user
         User user = new User();

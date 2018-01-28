@@ -1,6 +1,6 @@
 package com.lxdnz.bit794.tm3.library_project.web.signup;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.User;
+import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
 import org.hibernate.validator.constraints.NotBlank;
 
 public class SignupForm {
@@ -30,6 +30,7 @@ public class SignupForm {
     }
 
     public User createUser() {
+        // Set up new user
         User user = new User();
         user.setUsername(getUsername());
         user.setPassword(getPassword());

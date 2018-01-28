@@ -1,6 +1,6 @@
 package com.lxdnz.bit794.tm3.library_project.persistence.converters;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.User;
+import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
 import com.lxdnz.bit794.tm3.library_project.services.security.UserDetailsImpl;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

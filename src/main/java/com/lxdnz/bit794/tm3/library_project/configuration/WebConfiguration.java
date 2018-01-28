@@ -5,6 +5,10 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import java.util.Enumeration;
+
 @Configuration
 public class WebConfiguration {
     @Bean

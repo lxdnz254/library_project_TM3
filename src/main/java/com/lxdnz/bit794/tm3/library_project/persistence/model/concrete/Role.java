@@ -1,4 +1,6 @@
-package com.lxdnz.bit794.tm3.library_project.persistence.model;
+package com.lxdnz.bit794.tm3.library_project.persistence.model.concrete;
+
+import com.lxdnz.bit794.tm3.library_project.persistence.model.AbstractModelClass;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

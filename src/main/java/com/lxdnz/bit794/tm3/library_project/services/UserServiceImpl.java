@@ -1,6 +1,6 @@
 package com.lxdnz.bit794.tm3.library_project.services;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.User;
+import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
 import com.lxdnz.bit794.tm3.library_project.persistence.repos.UserRepository;
 import com.lxdnz.bit794.tm3.library_project.services.security.EncryptionService;
 

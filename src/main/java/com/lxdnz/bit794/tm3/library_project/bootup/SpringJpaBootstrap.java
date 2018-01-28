@@ -1,8 +1,8 @@
 package com.lxdnz.bit794.tm3.library_project.bootup;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.Book;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.Role;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.User;
+import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Book;
+import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Role;
+import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
 import com.lxdnz.bit794.tm3.library_project.persistence.repos.BookRepository;
 import com.lxdnz.bit794.tm3.library_project.services.RoleService;
 import com.lxdnz.bit794.tm3.library_project.services.UserService;
@@ -45,8 +45,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         seedBookTable();
         loadUsers();
         loadRoles();
-        assignUsersToUserRole();
-        assignUsersToAdminRole();
+
 
     }
 
@@ -108,6 +107,8 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             adminRole.setRole("ADMIN");
             roleService.saveOrUpdate(adminRole);
             log.info("Saved role" + adminRole.getRole());
+            assignUsersToUserRole();
+            assignUsersToAdminRole();
         }
         else
         {
