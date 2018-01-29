@@ -54,7 +54,7 @@ public class LoginController {
             return SIGNUP_VIEW_NAME;
         }
         User user = userService.saveOrUpdate(signupForm.createUser());
-        user.addRole(roleService.getById(1));
+        user.addRole(roleService.getById(Long.valueOf(1)));
         userService.saveOrUpdate(user);
 
         // see /WEB-INF/i18n/messages.properties and /WEB-INF/views/homeSignedIn.html

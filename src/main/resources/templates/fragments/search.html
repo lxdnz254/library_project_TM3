@@ -23,8 +23,8 @@
                        </tr>
                        <tr th:each="book : ${books}">
                            <td th:text="${book.id}"><a href="/book/${book.id}">Id</a></td>
-                           <td th:text="${book.title}">Title</td>
-                           <td th:text="${book.author}">Author(s)</td>
+                           <td th:text="${book.getTitle()}">Title</td>
+                           <td th:text="${book.getCreator()}">Author(s)</td>
                            <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a th:href="${'/book/' + book.id}">View</a></td>
                            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/book/edit/' + book.id}">Edit</a></td>
                            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/book/delete/' + book.id}">Delete</a></td>

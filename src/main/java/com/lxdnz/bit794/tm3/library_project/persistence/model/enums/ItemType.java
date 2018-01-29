@@ -6,9 +6,13 @@ public enum ItemType {
 
     BOOK,DVD,MAGZ;
 
-    private String string;
-    private Integer hireDays;
-    private BigDecimal price;
+    private static String string;
+    private static Integer hireDays;
+    private static BigDecimal price;
+
+    ItemType() {
+
+    }
 
     @Override
     public String toString() {
@@ -16,28 +20,34 @@ public enum ItemType {
         switch(this) {
             case BOOK: {
                 string = "Book";
+                break;
             }
             case DVD: {
                 string = "DVD";
+                break;
             }
             case MAGZ: {
                 string = "Magazine";
+                break;
             }
         }
         return string;
     }
 
-    public Integer getHireDays() {
+    public Integer getRentalDays() {
 
         switch(this) {
             case BOOK: {
                 hireDays = 21;
+                break;
             }
             case DVD: {
                 hireDays = 7;
+                break;
             }
             case MAGZ: {
                 hireDays = 7;
+                break;
             }
         }
         return hireDays;
@@ -48,12 +58,15 @@ public enum ItemType {
         switch(this) {
             case BOOK: {
                 price = BigDecimal.valueOf(0.70);
+                break;
             }
             case DVD: {
                 price = BigDecimal.valueOf(5.00);
+                break;
             }
             case MAGZ: {
                 price = BigDecimal.valueOf(2.00);
+                break;
             }
         }
         return price;
