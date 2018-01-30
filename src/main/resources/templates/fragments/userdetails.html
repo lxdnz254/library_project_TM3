@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<body>
+    <div class="container" th:fragment="userdetails">
+        <div class="panel-body">
+            <div sec:authorize="isAuthenticated()">
+                <p class="bold">Name: <p th:text="${user.firstName}"> </p><p th:text="${user.lastName}"></p></p>
+                <p class="bold">Phone: <p th:text="${user.contactPhoneNumber}"></p></p>
+            </div>
+            <div sec:authorize="!isAuthenticated()">
+                <p> You are currently not logged in.</p>
+                <p>If you are not current member please visit the Waitomo District Library.</p>
+                <p>Bring two forms of Id, and proof of residency in the Waitomo District</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

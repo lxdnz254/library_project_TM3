@@ -6,3 +6,12 @@ input[type=submit] {
     text-decoration: underline;
     cursor:pointer;
 }
+
+.panel-body {
+    width: 100%;
+}
+.panel-body p {
+    width: 200px;
+    word-wrap: break-word;
+}
+

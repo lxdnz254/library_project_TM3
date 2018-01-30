@@ -5,6 +5,9 @@ import com.lxdnz.bit794.tm3.library_project.persistence.repos.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ItemServiceImpl implements ItemService {
     private ItemRepository itemRepository;
@@ -15,22 +18,29 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public List<Item> listAll() {
+        List<Item> items = new ArrayList<>();
+        itemRepository.findAll().forEach(items :: add);
+        return items;
+    }
+
+    @Override
     public Iterable<Item> listAllItems() {
         return itemRepository.findAll();
     }
 
     @Override
-    public Item getItemById(Long id) {
+    public Item getById(Long id) {
         return itemRepository.findOne(id);
     }
 
     @Override
-    public Item saveItem(Item item) {
-        return itemRepository.save(item);
+    public Item saveOrUpdate(Item domainObject) {
+        return itemRepository.save(domainObject);
     }
 
     @Override
-    public void deleteItem(Long id) {
+    public void delete(Long id) {
         itemRepository.delete(id);
     }
 

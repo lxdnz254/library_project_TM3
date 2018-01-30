@@ -46,8 +46,6 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
         seedItemTable();
         loadUsers();
         loadRoles();
-
-
     }
 
     private void seedItemTable() {
@@ -59,14 +57,14 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             Item book1 = new Item();
             book1.setCreator("Asimov, Issac");
             book1.setTitle("I, Robot");
-            book1.setItemAsBook();
+            book1.setItemType(ItemType.BOOK);
             itemRepository.save(book1);
             log.info("Book1 - I,Robot by Issac Asimov saved.. id: " + book1.getId());
 
             Item book2 = new Item();
             book2.setTitle("Tu Arohae, Inter-disciplinary Critical Thinking");
             book2.setCreator("Fish, William & Duffin, Stephen");
-            book2.setItemAsBook();
+            book2.setItemType(ItemType.BOOK);
             itemRepository.save(book2);
             log.info("Book2 - Critical Thinking by William Fish & Stephen Duffin saved.. id: " + book2.getId());
         } else {
@@ -83,11 +81,21 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             User user1 = new User();
             user1.setUsername("user");
             user1.setPassword("user");
+            user1.setFirstName("Brian");
+            user1.setLastName("Adams");
+            user1.setStreetAddress("1 Main Street");
+            user1.setTown("Te Kuiti");
+            user1.setContactPhoneNumber("07-8788888");
             userService.saveOrUpdate(user1);
 
             User user2 = new User();
             user2.setUsername("admin");
             user2.setPassword("admin");
+            user2.setFirstName("Amy");
+            user2.setLastName("Armstrong");
+            user2.setStreetAddress("2 Side Road");
+            user2.setTown("PioPio");
+            user2.setContactPhoneNumber("07-8777777");
             userService.saveOrUpdate(user2);
         }
         else

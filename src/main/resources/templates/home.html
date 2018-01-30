@@ -25,8 +25,8 @@
                 <div class="panel-heading">
                     <span sec:authorize="isAuthenticated()">Welcome <span sec:authentication="name"></span></span>
                 </div>
-                <div class="panel-body">
-                    <p>This is the user container</p>
+                <div class="panel-body" th:replace="fragments/userdetails :: userdetails">
+                    <span>Login Status</span>
                 </div>
             </div>
         </div>

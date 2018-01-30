@@ -17,19 +17,10 @@ public class Item extends AbstractModelClass {
     private String creator;
 
     @Column
-    private BigDecimal price;
-
-    @Column
-    private Integer rentalDays;
-
-    @Column
     private boolean isRented;
 
     @Column
     private boolean isReserved;
-
-    @Column
-    private Date hireDate;
 
     @Enumerated(EnumType.STRING)
     private ItemType itemType;
@@ -51,22 +42,6 @@ public class Item extends AbstractModelClass {
         this.creator = creator;
     }
 
-    public BigDecimal getPrice() {
-        return price.stripTrailingZeros();
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public Integer getRentalDays() {
-        return rentalDays;
-    }
-
-    public void setRentalDays(Integer rentalDays) {
-        this.rentalDays = rentalDays;
-    }
-
     public boolean isRented() {
         return isRented;
     }
@@ -83,26 +58,12 @@ public class Item extends AbstractModelClass {
         isReserved = reserved;
     }
 
-    public Date getHireDate() {
-        return hireDate;
-    }
-
-    public void setHireDate(Date hireDate) {
-        this.hireDate = hireDate;
-    }
-
     public ItemType getItemType() {
         return itemType;
     }
 
     public void setItemType(ItemType itemType) {
         this.itemType = itemType;
-    }
-
-    public void setItemAsBook() {
-        setItemType(ItemType.BOOK);
-        setRentalDays(ItemType.BOOK.getRentalDays());
-        setPrice(ItemType.BOOK.getPrice());
     }
 
     @Override

@@ -6,14 +6,31 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"username", "firstName", "lastName"}))
 @Entity
 public class User extends AbstractModelClass {
+
 
     @Column(nullable = false, unique = true)
     private String username;
 
     @Transient
     private String password;
+
+    @Column
+    private String firstName;
+
+    @Column
+    private String lastName;
+
+    @Column
+    private String streetAddress;
+
+    @Column
+    private String town;
+
+    @Column
+    private String contactPhoneNumber;
 
     private String encryptedPassword;
     private Boolean enabled = true;
@@ -57,6 +74,45 @@ public class User extends AbstractModelClass {
         this.enabled = enabled;
     }
 
+    public String getContactPhoneNumber() {
+        return contactPhoneNumber;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getStreetAddress() {
+        return streetAddress;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setContactPhoneNumber(String contactPhoneNumber) {
+        this.contactPhoneNumber = contactPhoneNumber;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setStreetAddress(String streetAddress) {
+        this.streetAddress = streetAddress;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
 
     public List<Role> getRoles() {
         return roles;

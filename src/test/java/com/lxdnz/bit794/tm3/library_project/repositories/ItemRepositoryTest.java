@@ -2,6 +2,7 @@ package com.lxdnz.bit794.tm3.library_project.repositories;
 
 import com.lxdnz.bit794.tm3.library_project.configuration.RepositoryConfiguration;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Item;
+import com.lxdnz.bit794.tm3.library_project.persistence.model.enums.ItemType;
 import com.lxdnz.bit794.tm3.library_project.persistence.repos.ItemRepository;
 
 import org.junit.Test;
@@ -39,7 +40,7 @@ public class ItemRepositoryTest {
         Item book = new Item();
         book.setCreator("God");
         book.setTitle("The Bible");
-        book.setItemAsBook();
+        book.setItemType(ItemType.BOOK);
 
         // new Book() auto-generates ID so cannot test for null id beforehand
         // save book, verify has Id value after save
@@ -54,11 +55,13 @@ public class ItemRepositoryTest {
 
         // should equal - test all variable
         assertEquals(book.getId(), fetchedBook.getId());
+        assertEquals(book.getTitle(), fetchedBook.getTitle());
         assertEquals(book.getCreator(), fetchedBook.getCreator());
         assertEquals(book.getItemType(), fetchedBook.getItemType());
-        assertEquals(book.getPrice(), fetchedBook.getPrice());
-        assertEquals(book.getRentalDays(), fetchedBook.getRentalDays());
-        assertEquals(book.getTitle(), fetchedBook.getTitle());
+        assertEquals(book.getItemType().getPrice(),
+                fetchedBook.getItemType().getPrice());
+        assertEquals(book.getItemType().getRentalDays(),
+                fetchedBook.getItemType().getRentalDays());
 
         //update Author
         fetchedBook.setCreator("King James");
