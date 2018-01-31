@@ -3,6 +3,8 @@ package com.lxdnz.bit794.tm3.library_project.web.forms;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
 import org.hibernate.validator.constraints.NotBlank;
 
+import java.math.BigDecimal;
+
 public class SignupForm {
 
     private static final String NOT_BLANK_MESSAGE = "{notBlank.message}";
@@ -90,6 +92,7 @@ public class SignupForm {
         user.setStreetAddress(getStreetAddress());
         user.setTown(getTown());
         user.setContactPhoneNumber(getContactPhoneNumber());
+        user.setCurrentBalance(BigDecimal.ZERO);
         return user;
     }
 }

@@ -14,21 +14,13 @@
                 You have been logged out.
             </label>
         </div>
-        <form th:action="@{/login}" method="post">
+            <form th:action="@{/login}" method="post" class="form-signin">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                <input type="text" name="username" class="input-block-level" placeholder="Username"/>
+                <input type="password" name="password" class="input-block-level" placeholder="Password"/>
 
-            <table class="table table-striped">
-                <tr>
-                    <td><label> User Name : <input type="text" name="username"/> </label></td>
-                </tr>
-                <tr>
-                    <td><label> Password : <input type="password" name="password"/> </label></td>
-                </tr>
-                <tr>
-                    <td> <button type="submit" class="btn btn-primary">Sign In</button></td>
-                </tr>
-            </table>
-
-        </form>
+                <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+            </form>
     </div>
 </div>
 

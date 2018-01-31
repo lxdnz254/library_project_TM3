@@ -14,7 +14,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 
-
+import java.math.BigDecimal;
 import java.util.List;
 
 @Component
@@ -86,6 +86,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             user1.setStreetAddress("1 Main Street");
             user1.setTown("Te Kuiti");
             user1.setContactPhoneNumber("07-8788888");
+            user1.setCurrentBalance(BigDecimal.ZERO);
             userService.saveOrUpdate(user1);
 
             User user2 = new User();
@@ -96,6 +97,7 @@ public class SpringJpaBootstrap implements ApplicationListener<ContextRefreshedE
             user2.setStreetAddress("2 Side Road");
             user2.setTown("PioPio");
             user2.setContactPhoneNumber("07-8777777");
+            user2.setCurrentBalance(BigDecimal.TEN);
             userService.saveOrUpdate(user2);
         }
         else

@@ -11,7 +11,33 @@ input[type=submit] {
     width: 100%;
 }
 .panel-body p {
-    width: 200px;
+    width: 98%;
     word-wrap: break-word;
 }
 
+html,
+body {
+    margin:0;
+    padding:0;
+    height:100%;
+}
+#container {
+    min-height:100%;
+    position:relative;
+}
+
+#body {
+    padding:10px;
+    padding-bottom:60px;   /* Height of the footer */
+}
+#footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:60px;   /* Height of the footer */
+    background:#6cf;
+}
+/* IE 6 and down:
+#container {
+   height:100%;
+}

@@ -6,34 +6,38 @@
 
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
-<body>
+<body id="body">
 
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 
-    <div class="container-fluid">
-        <div class="col-xs-9">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Search The Library</div>
-                <div class="panel-body">
-                    <div th:replace="fragments/search :: search">The Search Fragment</div>
+    <div class="container-fluid" style="overflow-y: scroll; overflow-x: hidden">
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Search The Library</div>
+                    <div class="panel-body">
+                        <div th:replace="fragments/search :: search">The Search Fragment</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-3">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <span sec:authorize="isAuthenticated()">Welcome <span sec:authentication="name"></span></span>
-                </div>
-                <div class="panel-body" th:replace="fragments/userdetails :: userdetails">
-                    <span>Login Status</span>
+            <div class="col-sm-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <span sec:authorize="isAuthenticated()">Welcome <span sec:authentication="name"></span></span>
+                    </div>
+                    <div class="panel-body" th:replace="fragments/userdetails :: userdetails">
+                        <span>Login Status</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
+
+</body>
 <footer>
     <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
 </footer>
-</body>
 </html>

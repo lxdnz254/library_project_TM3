@@ -14,7 +14,7 @@
                    </form>
                    <table class="table table-striped">
                        <tr>
-                           <th>Id</th>
+                           <th>Type</th>
                            <th>Title</th>
                            <th>Author(s)</th>
                            <th sec:authorize="hasAnyAuthority('USER','ADMIN')">View</th>
@@ -22,8 +22,8 @@
                            <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
                        </tr>
                        <tr th:each="book : ${books}">
-                           <td th:text="${book.id}"><a href="/book/${book.id}">Id</a></td>
-                           <td th:text="${book.getTitle()}">Title</td>
+                           <td th:text="${book.getItemType()}"></td>
+                           <td th:text="${book.getTitle()}"><a href="/book/${book.id}">Type</a>Title</td>
                            <td th:text="${book.getCreator()}">Author(s)</td>
                            <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a th:href="${'/book/' + book.id}">View</a></td>
                            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/book/edit/' + book.id}">Edit</a></td>

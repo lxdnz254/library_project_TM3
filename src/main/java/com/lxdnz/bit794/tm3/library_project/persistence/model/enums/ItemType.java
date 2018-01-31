@@ -9,6 +9,7 @@ public enum ItemType {
     private static String string;
     private static Integer hireDays;
     private static BigDecimal price;
+    private static String creatorName;
 
     ItemType() {
 
@@ -70,5 +71,24 @@ public enum ItemType {
             }
         }
         return price;
+    }
+
+    public String getCreatorName() {
+
+        switch(this) {
+            case BOOK: {
+                creatorName = "Author(s)";
+                break;
+            }
+            case DVD: {
+                creatorName = "Director";
+                break;
+            }
+            case MAGZ: {
+                creatorName = "Publisher";
+                break;
+            }
+        }
+        return creatorName;
     }
 }

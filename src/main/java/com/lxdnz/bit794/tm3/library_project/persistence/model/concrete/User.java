@@ -3,6 +3,7 @@ package com.lxdnz.bit794.tm3.library_project.persistence.model.concrete;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.AbstractModelClass;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,9 @@ public class User extends AbstractModelClass {
 
     @Column
     private String contactPhoneNumber;
+
+    @Column
+    private BigDecimal currentBalance;
 
     private String encryptedPassword;
     private Boolean enabled = true;
@@ -94,6 +98,10 @@ public class User extends AbstractModelClass {
         return town;
     }
 
+    public BigDecimal getCurrentBalance() {
+        return currentBalance;
+    }
+
     public void setContactPhoneNumber(String contactPhoneNumber) {
         this.contactPhoneNumber = contactPhoneNumber;
     }
@@ -112,6 +120,10 @@ public class User extends AbstractModelClass {
 
     public void setTown(String town) {
         this.town = town;
+    }
+
+    public void setCurrentBalance(BigDecimal currentBalance) {
+        this.currentBalance = currentBalance;
     }
 
     public List<Role> getRoles() {
