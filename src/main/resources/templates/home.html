@@ -6,12 +6,12 @@
 
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
-<body id="body">
+<body>
 
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 
-    <div class="container-fluid" style="overflow-y: scroll; overflow-x: hidden">
+    <div id="content" class="container-fluid">
         <div class="row">
             <div class="col-sm-9">
                 <div class="panel panel-primary">
@@ -35,9 +35,8 @@
     </div>
 
 </div>
-
-</body>
 <footer>
     <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
 </footer>
+</body>
 </html>

@@ -83,7 +83,7 @@ public class FormController {
     }
 
     @PostMapping("bookform")
-    public String signup(@Valid @ModelAttribute BookForm bookForm, Errors errors, RedirectAttributes ra) {
+    public String newBook(@Valid @ModelAttribute BookForm bookForm, Errors errors, RedirectAttributes ra) {
         if (errors.hasErrors()) {
             return NEWBOOK_VIEW_NAME;
         }

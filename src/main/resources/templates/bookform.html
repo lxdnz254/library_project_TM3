@@ -18,7 +18,7 @@
         </div>
     </form>
 
-    <div>
+    <div id="content">
         <form class="form-narrow form-horizontal" method="post" th:action="@{/bookform}" th:object="${bookForm}" th:fragment="bookForm">
             <!--/* Show general error message when form contains errors */-->
             <th:block th:if="${#fields.hasErrors('${bookForm.*}')}">
@@ -62,9 +62,9 @@
     </div>
 
 </div>
-
-</body>
 <footer>
     <div th:replace="fragments/footer :: footer">The Footer</div>
 </footer>
+</body>
+
 </html>

@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-    <div class = "booklist">
+    <div class = "booklist" id="content">
         <div th:if="${not #lists.isEmpty(books)}">
             <form th:action="@{/logout}" method="post">
                 <div class="col-sm-10"><h2>List of Books</h2></div>
@@ -40,10 +40,11 @@
 
         </div>
     </div>
-</div>
 
-</body>
+</div>
 <footer>
     <div th:replace="fragments/footer :: footer">The Footer</div>
 </footer>
+</body>
+
 </html>

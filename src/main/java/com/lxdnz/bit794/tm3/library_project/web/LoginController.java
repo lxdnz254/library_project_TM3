@@ -18,9 +18,6 @@ import javax.validation.Valid;
 public class LoginController {
 
 
-
-
-
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(){
         return "login";
@@ -28,6 +25,5 @@ public class LoginController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout() { return "redirect:/"; }
-
 
 }

@@ -18,7 +18,7 @@
         </div>
     </form>
 
-    <div>
+    <div id="content">
         <form class="form-horizontal" th:object="${book}" th:action="@{/book}" method="post">
             <input type="hidden" th:field="*{id}"/>
             <input type="hidden" th:field="*{version}"/>
@@ -41,9 +41,9 @@
     </div>
 
 </div>
-
-</body>
 <footer>
     <div th:replace="fragments/footer :: footer">The Footer</div>
 </footer>
+</body>
+
 </html>
