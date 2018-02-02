@@ -1,11 +1,9 @@
 package com.lxdnz.bit794.tm3.library_project.persistence.model.concrete;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.AbstractModelClass;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.AbstractRequest;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Transient;
 import java.util.Date;
 
 

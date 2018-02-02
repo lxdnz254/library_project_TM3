@@ -24,6 +24,13 @@ public class Reservation extends AbstractRequest {
         this.stillReserved = true;
     }
 
+    /**
+     * Standard constructor
+     */
+    public Reservation() {
+
+    }
+
     /* Getters */
 
 
