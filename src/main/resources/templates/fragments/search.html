@@ -7,9 +7,9 @@
     <div class="container">
        <div th:fragment="search">
            <div class="container-fluid">
-               <div th:if="${not #lists.isEmpty(items)}">
+               <div th:if="${not #lists.isEmpty(searcheditems)}">
                    <form th:action="@{/logout}" method="post">
-                       <div class="col-sm-10"><h2>List of Items</h2></div>
+                       <div class="col-sm-10"><h2>List of Searched Items</h2></div>
 
                    </form>
                    <table class="table table-striped">
@@ -20,14 +20,18 @@
                            <th sec:authorize="hasAnyAuthority('USER','ADMIN')">View</th>
                            <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
                            <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
+                           <th sec:authorize="hasAuthority('USER')">Checkout/Reserve</th>
                        </tr>
-                       <tr th:each="item : ${items}">
+                       <tr th:each="item : ${searcheditems}">
                            <td th:text="${item.getItemType()}"></td>
                            <td th:text="${item.getTitle()}"><a href="/item/${item.id}">Type</a>Title</td>
                            <td th:text="${item.getCreator()}">Author(s)</td>
                            <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a th:href="${'/item/' + item.id}">View</a></td>
                            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/item/edit/' + item.id}">Edit</a></td>
                            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/item/delete/' + item.id}">Delete</a></td>
+
+                           <td th:if="${!item.isRented()}" sec:authorize="hasAuthority('USER')"><a th:href="${'/item/checkout/' + item.id}">Checkout</a></td>
+                           <td th:if="${item.isRented()}" sec:authorize="hasAuthority('USER')"><a th:if="${!item.isReserved()}" th:href="${'/item/reserve/' + item.id}">Reserve</a></td>
                        </tr>
                    </table>
 
@@ -35,6 +39,40 @@
            </div>
        </div>
     </div>
+    <div class="container">
+        <div th:fragment="list">
+            <div class="container-fluid">
+                <div th:if="${not #lists.isEmpty(items)}">
+                    <form th:action="@{/logout}" method="post">
+                        <div class="col-sm-10"><h2>List of Items</h2></div>
 
+                    </form>
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Type</th>
+                            <th>Title</th>
+                            <th>Author(s)</th>
+                            <th sec:authorize="hasAnyAuthority('USER','ADMIN')">View</th>
+                            <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
+                            <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
+                            <th sec:authorize="hasAuthority('USER')">Checkout/Reserve</th>
+                        </tr>
+                        <tr th:each="item : ${items}">
+                            <td th:text="${item.getItemType()}"></td>
+                            <td th:text="${item.getTitle()}"><a href="/item/${item.id}">Type</a>Title</td>
+                            <td th:text="${item.getCreator()}">Author(s)</td>
+                            <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a th:href="${'/item/' + item.id}">View</a></td>
+                            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/item/edit/' + item.id}">Edit</a></td>
+                            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/item/delete/' + item.id}">Delete</a></td>
+
+                            <td th:if="${!item.isRented()}" sec:authorize="hasAuthority('USER')"><a th:href="${'/item/checkout/' + item.id}">Checkout</a></td>
+                            <td th:if="${item.isRented()}" sec:authorize="hasAuthority('USER')"><a th:if="${!item.isReserved()}" th:href="${'/item/reserve/' + item.id}">Reserve</a></td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

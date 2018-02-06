@@ -27,6 +27,8 @@
                     <th sec:authorize="hasAnyAuthority('USER','ADMIN')">View</th>
                     <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
                     <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
+                    <th sec:authorize="hasAuthority('USER')">Checkout</th>
+                    <th sec:authorize="hasAuthority('USER')">Reserve</th>
                 </tr>
                 <tr th:each="item : ${items}">
                     <td th:text="${item.id}"><a href="/item/${item.id}">Id</a></td>
@@ -35,6 +37,8 @@
                     <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a th:href="${'/item/' + item.id}">View</a></td>
                     <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/item/edit/' + item.id}">Edit</a></td>
                     <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/item/delete/' + item.id}">Delete</a></td>
+                    <td sec:authorize="hasAuthority('USER')"><a type="button" th:href="${'/item/checkout/' + item.id}">Checkout</a></td>
+                    <td sec:authorize="hasAuthority('USER')"><a type="button" th:href="${'/item/reserve' + item.id}">Reserve</a></td>
                 </tr>
             </table>
 

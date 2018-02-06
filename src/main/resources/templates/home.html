@@ -17,7 +17,16 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">Search The Library</div>
                     <div class="panel-body">
-                        <div th:replace="fragments/search :: search">The Search Fragment</div>
+                        <div class="search-container">
+                            <form action="/" th:object="${search}" th:action="@{/search}" method="post">
+                                <input type="text" placeholder="Search Titles.." th:field="*{searchterm}"/>
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                        <div th:replace="fragments/search :: ${not #lists.isEmpty(searcheditems)} ? 'search' : 'list'">
+                            The search List
+                        </div>
+
                     </div>
                 </div>
             </div>

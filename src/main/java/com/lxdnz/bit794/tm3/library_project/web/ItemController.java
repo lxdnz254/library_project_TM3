@@ -82,6 +82,8 @@ public class ItemController {
         String name = auth.getName(); //get logged in username
         User reserveUser = userService.findByUsername(name);
         Reservation reservation = new Reservation(reserveItem, reserveUser);
+        reserveItem.setReserved(true);
+        itemService.saveOrUpdate(reserveItem);
         reserveService.saveOrUpdate(reservation);
 
         return "redirect:/";
@@ -94,6 +96,8 @@ public class ItemController {
         String name = auth.getName(); //get logged in username
         User checkoutUser = userService.findByUsername(name);
         Loan newLoan = new Loan(checkoutItem, checkoutUser);
+        checkoutItem.setRented(true);
+        itemService.saveOrUpdate(checkoutItem);
         loanService.saveOrUpdate(newLoan);
         return "redirect:/";
     }

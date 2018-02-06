@@ -30,6 +30,13 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public List<Item> listAllItemsBySearchedTitle(String string) {
+        List<Item> items = new ArrayList<>();
+        itemRepository.findAllByTitleContains(string).forEach(items :: add);
+        return items;
+    }
+
+    @Override
     public Item getById(Long id) {
         return itemRepository.findOne(id);
     }

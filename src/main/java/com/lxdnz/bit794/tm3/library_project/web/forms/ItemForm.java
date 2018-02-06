@@ -40,10 +40,10 @@ public class ItemForm {
 
     public Item createItem() {
         // set up new Item as type Book
-        Item book = new Item();
-        book.setTitle(getTitle());
-        book.setCreator(getAuthor());
-        book.setItemType(getType());
-        return book;
+        Item item = new Item();
+        item.setTitle(getTitle());
+        item.setCreator(getAuthor());
+        item.setItemType(getType());
+        return item;
     }
 }
