@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface ReserveRepository extends CrudRepository<Reservation, Long> {
+
     List<Reservation> findReservationByStillReservedIsTrue();
 
     Reservation findOneByUserID(Long userID);

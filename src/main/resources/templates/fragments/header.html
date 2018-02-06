@@ -43,8 +43,9 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
                     <ul class="nav navbar-nav">
-                        <li><a href="#" th:href="@{bookform}" sec:authorize="hasAuthority('ADMIN')">Add Book</a></li>
-                        <li><a href="#" th:href="@{signup}" sec:authorize="hasAuthority('ADMIN')">Add User</a></li>
+                        <li><a href="/" th:href="@{itemform}" sec:authorize="hasAuthority('ADMIN')">Add Item</a></li>
+                        <li><a href="/" th:href="@{signup}" sec:authorize="hasAuthority('ADMIN')">Add User</a></li>
+                        <li><a href="/" th:href="@{users}" sec:authorize="hasAuthority('ADMIN')">View Users</a></li>
                     </ul>
                 </div>
             </div>

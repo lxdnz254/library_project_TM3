@@ -4,14 +4,14 @@ import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Item;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.enums.ItemType;
 import org.hibernate.validator.constraints.NotBlank;
 
-public class BookForm {
+public class ItemForm {
 
     private static final String NOT_BLANK_MESSAGE = "{notBlank.message}";
 
-    @NotBlank(message = BookForm.NOT_BLANK_MESSAGE)
+    @NotBlank(message = ItemForm.NOT_BLANK_MESSAGE)
     private String title;
 
-    @NotBlank(message = BookForm.NOT_BLANK_MESSAGE)
+    @NotBlank(message = ItemForm.NOT_BLANK_MESSAGE)
     private String author;
 
     private ItemType type;

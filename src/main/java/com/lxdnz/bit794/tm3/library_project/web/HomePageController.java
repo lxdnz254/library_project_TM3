@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import static org.springframework.security.core.context.SecurityContextHolder.*;
 
 @Controller
-public class SimpleController {
+public class HomePageController {
 
     private ItemService itemService;
     private UserService userService;
@@ -38,7 +38,7 @@ public class SimpleController {
     @GetMapping("/")
     public String homePage(Model model) {
         model.addAttribute("appName", appName);
-        model.addAttribute("books", itemService.listAllItems());
+        model.addAttribute("items", itemService.listAllItems());
         Authentication auth = getContext().getAuthentication();
         String name = auth.getName(); //get logged in username
         model.addAttribute("user", userService.findByUsername(name));

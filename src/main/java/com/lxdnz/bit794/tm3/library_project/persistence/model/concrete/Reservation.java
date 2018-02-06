@@ -19,8 +19,8 @@ public class Reservation extends AbstractRequest {
      * @param user
      */
     public Reservation(Item item, User user) {
-        this.setItem(item);
-        this.setUser(user);
+        this.setItemID(item.getId());
+        this.setUserID(user.getId());
         this.stillReserved = true;
     }
 
@@ -42,5 +42,29 @@ public class Reservation extends AbstractRequest {
 
     public void setStillReserved(boolean stillReserved) {
         this.stillReserved = stillReserved;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (int)(this.getId() ^ (this.getId() >>> 32));
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Reservation other = (Reservation) obj;
+        if (this.getId() != other.getId())
+            return false;
+        if (stillReserved) {
+            return other.stillReserved;
+        } else return stillReserved && other.stillReserved;
     }
 }

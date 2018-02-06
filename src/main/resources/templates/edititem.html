@@ -11,7 +11,7 @@
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
     <form class="form-horizontal" th:action="@{/logout}" method="post">
         <div class="form-group">
-            <div class="col-sm-10"> <h2>Book Add/Update</h2></div>
+            <div class="col-sm-10"> <h2>Item Add/Update</h2></div>
             <div class="col-sm-2" style="padding-top: 30px;">
                 <input  type="submit" value="Sign Out"/>
             </div>
@@ -19,7 +19,7 @@
     </form>
 
     <div id="content">
-        <form class="form-horizontal" th:object="${book}" th:action="@{/book}" method="post">
+        <form class="form-horizontal" th:object="${item}" th:action="@{/item}" method="post">
             <input type="hidden" th:field="*{id}"/>
             <input type="hidden" th:field="*{version}"/>
             <div class="form-group">

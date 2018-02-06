@@ -7,9 +7,9 @@
     <div class="container">
        <div th:fragment="search">
            <div class="container-fluid">
-               <div th:if="${not #lists.isEmpty(books)}">
+               <div th:if="${not #lists.isEmpty(items)}">
                    <form th:action="@{/logout}" method="post">
-                       <div class="col-sm-10"><h2>List of Books</h2></div>
+                       <div class="col-sm-10"><h2>List of Items</h2></div>
 
                    </form>
                    <table class="table table-striped">
@@ -21,13 +21,13 @@
                            <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
                            <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
                        </tr>
-                       <tr th:each="book : ${books}">
-                           <td th:text="${book.getItemType()}"></td>
-                           <td th:text="${book.getTitle()}"><a href="/book/${book.id}">Type</a>Title</td>
-                           <td th:text="${book.getCreator()}">Author(s)</td>
-                           <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a th:href="${'/book/' + book.id}">View</a></td>
-                           <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/book/edit/' + book.id}">Edit</a></td>
-                           <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/book/delete/' + book.id}">Delete</a></td>
+                       <tr th:each="item : ${items}">
+                           <td th:text="${item.getItemType()}"></td>
+                           <td th:text="${item.getTitle()}"><a href="/item/${item.id}">Type</a>Title</td>
+                           <td th:text="${item.getCreator()}">Author(s)</td>
+                           <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a th:href="${'/item/' + item.id}">View</a></td>
+                           <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/item/edit/' + item.id}">Edit</a></td>
+                           <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/item/delete/' + item.id}">Delete</a></td>
                        </tr>
                    </table>
 

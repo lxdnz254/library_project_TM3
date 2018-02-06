@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -38,8 +40,9 @@ public class ReserveServiceTest {
     public void testCreateReserve() {
         // Set up User to reserve Item
         User testUser = userService.findByUsername("user");
-        Item testItem = itemService.getById((long)1);
-
+        Item testItem = itemService.getById(1L);
+        // get initial size of active reserves
+        int activeCount = reserveService.getActiveReserves().size();
         /*
         Create Reservation method to be implemented in the System
          */
@@ -60,6 +63,10 @@ public class ReserveServiceTest {
         /*
         More test methods in here
          */
+        // active Reserve tests
+        List<?> activeReserves = reserveService.getActiveReserves();
+        assertEquals(activeReserves.size(), activeCount + 1);
+        activeReserves = null; // kill the activeReserves because we only needed the count.
 
         // finally remove test object from database and remove reserved status of item
         // method for un-reserving an object
@@ -69,5 +76,8 @@ public class ReserveServiceTest {
         // assertions
         assertNull(reserveService.getById(testReservation.getId()));
         assertFalse(itemService.getById(testItem.getId()).isReserved());
+        // checking the reserve is no longer active
+        List<?> secondActiveCheck = reserveService.getActiveReserves();
+        assertEquals(secondActiveCheck.size(), activeCount);
     }
 }

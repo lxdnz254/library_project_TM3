@@ -1,12 +1,11 @@
 package com.lxdnz.bit794.tm3.library_project.web;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Item;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.enums.ItemType;
 import com.lxdnz.bit794.tm3.library_project.services.ItemService;
 import com.lxdnz.bit794.tm3.library_project.services.RoleService;
 import com.lxdnz.bit794.tm3.library_project.services.UserService;
-import com.lxdnz.bit794.tm3.library_project.web.forms.BookForm;
+import com.lxdnz.bit794.tm3.library_project.web.forms.ItemForm;
 import com.lxdnz.bit794.tm3.library_project.web.forms.SignupForm;
 import com.lxdnz.bit794.tm3.library_project.web.support.MessageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +19,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 @Controller
 public class FormController {
 
     private static final String SIGNUP_VIEW_NAME = "signup";
-    private static final String NEWBOOK_VIEW_NAME = "bookform";
+    private static final String NEWITEM_VIEW_NAME = "itemform";
 
     @Autowired
     private UserService userService;
@@ -60,36 +57,36 @@ public class FormController {
             return SIGNUP_VIEW_NAME;
         }
         User user = userService.saveOrUpdate(signupForm.createUser());
-        user.addRole(roleService.getById(Long.valueOf(1)));
+        user.addRole(roleService.getById(1L));
         userService.saveOrUpdate(user);
 
-        // see /WEB-INF/i18n/messages.properties and /WEB-INF/views/homeSignedIn.html
+
         MessageHelper.addSuccessAttribute(ra, "signup.success");
         return "redirect:/";
     }
 
-    @RequestMapping(value = "bookform", method = RequestMethod.GET)
+    @RequestMapping(value = "itemform", method = RequestMethod.GET)
     public String newBook(Model model) {
 
-        model.addAttribute(new BookForm());
+        model.addAttribute(new ItemForm());
         model.addAttribute("allTypes", Arrays.asList(ItemType.values()));
         /*
         if (AjaxUtils.isAjaxRequest(requestedWith)) {
-            return SIGNUP_VIEW_NAME.concat(" :: bookForm");
+            return NEWITEM_VIEW_NAME.concat(" :: itemForm");
         }
         */
-        return NEWBOOK_VIEW_NAME;
+        return NEWITEM_VIEW_NAME;
 
     }
 
-    @PostMapping("bookform")
-    public String newBook(@Valid @ModelAttribute BookForm bookForm, Errors errors, RedirectAttributes ra) {
+    @PostMapping("itemform")
+    public String newBook(@Valid @ModelAttribute ItemForm itemForm, Errors errors, RedirectAttributes ra) {
         if (errors.hasErrors()) {
-            return NEWBOOK_VIEW_NAME;
+            return NEWITEM_VIEW_NAME;
         }
-        itemService.saveOrUpdate(bookForm.createItem());
-        // see /WEB-INF/i18n/messages.properties and /WEB-INF/views/homeSignedIn.html
-        MessageHelper.addSuccessAttribute(ra, "bookform.success");
+        itemService.saveOrUpdate(itemForm.createItem());
+
+        MessageHelper.addSuccessAttribute(ra, "itemform.success");
         return "redirect:/";
     }
 }

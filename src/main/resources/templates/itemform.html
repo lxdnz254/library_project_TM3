@@ -19,9 +19,9 @@
     </form>
 
     <div id="content">
-        <form class="form-narrow form-horizontal" method="post" th:action="@{/bookform}" th:object="${bookForm}" th:fragment="bookForm">
+        <form class="form-narrow form-horizontal" method="post" th:action="@{/itemform}" th:object="${itemForm}" th:fragment="itemForm">
             <!--/* Show general error message when form contains errors */-->
-            <th:block th:if="${#fields.hasErrors('${bookForm.*}')}">
+            <th:block th:if="${#fields.hasErrors('${itemForm.*}')}">
                 <div th:replace="fragments/alert :: alert (type='danger', message='Form contains errors. Please try again.')">Alert</div>
             </th:block>
             <fieldset>
