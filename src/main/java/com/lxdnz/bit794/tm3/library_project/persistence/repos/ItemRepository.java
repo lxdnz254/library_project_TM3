@@ -10,5 +10,7 @@ public interface ItemRepository extends CrudRepository<Item, Long> {
     List<Item> findByTitle(String title);
     Item findOne(long id);
     List<Item> findAllByTitleContains(String string);
+    List<Item> findAllByCreatorContains(String string);
+    List<Item> findAllByTitleContainsOrCreatorContains(String title, String creator);
 
 }

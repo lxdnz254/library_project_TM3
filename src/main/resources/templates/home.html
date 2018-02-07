@@ -19,8 +19,18 @@
                     <div class="panel-body">
                         <div class="search-container">
                             <form action="/" th:object="${search}" th:action="@{/search}" method="post">
-                                <input type="text" placeholder="Search Titles.." th:field="*{searchterm}"/>
-                                <button type="submit"><i class="fa fa-search"></i></button>
+                                <fieldset>
+                                    <label for="searchType" class="col-lg-2 control-label">Search By: </label>
+                                    <select id="searchType" th:field="*{searchBy}">
+                                        <option th:each="searchFor : ${search.getSearchByList()}"
+                                                th:value="${{searchFor}}"
+                                                th:text="${searchFor}">Wireframe</option>
+                                    </select>
+
+                                    <input type="text" placeholder="Search Titles.." th:field="*{searchterm}"/>
+
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </fieldset>
                             </form>
                         </div>
                         <div th:replace="fragments/search :: ${not #lists.isEmpty(searcheditems)} ? 'search' : 'list'">

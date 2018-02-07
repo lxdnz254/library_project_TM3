@@ -48,7 +48,10 @@ public class HomePageController {
 
     @RequestMapping(value="/search", method= RequestMethod.POST)
     public String searchTitle(Model model, Search search) {
-        model.addAttribute("searcheditems", itemService.listAllItemsBySearchedTitle(search.getSearchterm()));
+        model.addAttribute("searcheditems",
+                itemService.selectListBySearchType(
+                        search.getSearchterm(),
+                        search.getSearchBy()));
         return homePage(model);
     }
 }
