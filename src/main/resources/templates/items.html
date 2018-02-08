@@ -12,7 +12,7 @@
     <div class = "itemlist" id="content">
         <div th:if="${not #lists.isEmpty(items)}">
             <form th:action="@{/logout}" method="post">
-                <div class="col-sm-10"><h2>List of Itemss</h2></div>
+                <div class="col-sm-10"><h2>List of Items</h2></div>
                 <div class="col-sm-2" style="padding-top: 30px;">
                      <span sec:authorize="isAuthenticated()">
                     <input type="submit" value="Sign Out"/>

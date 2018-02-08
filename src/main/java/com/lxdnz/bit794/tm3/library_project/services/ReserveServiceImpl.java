@@ -48,8 +48,8 @@ public class ReserveServiceImpl implements ReserveService {
     }
 
     @Override
-    public Reservation getByUser(User user) {
-        return reserveRepository.findOneByUserID(user.getId());
+    public List<Reservation> getByUser(User user) {
+        return reserveRepository.findAllByUserID(user.getId());
     }
 
     @Override

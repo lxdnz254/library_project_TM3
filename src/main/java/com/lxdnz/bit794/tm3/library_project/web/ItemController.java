@@ -1,5 +1,6 @@
 package com.lxdnz.bit794.tm3.library_project.web;
 
+import com.lxdnz.bit794.tm3.library_project.helpers.Helper;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Item;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Loan;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Reservation;
@@ -76,15 +77,15 @@ public class ItemController {
     }
 
     @RequestMapping("item/reserve/{id}")
-    public String reserveItem(@PathVariable Long id) {
-        Item reserveItem = itemService.getById(id);
+    public String reserveItem(@PathVariable Long id, Model model, Helper helper) {
         Authentication auth = getContext().getAuthentication();
         String name = auth.getName(); //get logged in username
         User reserveUser = userService.findByUsername(name);
-        Reservation reservation = new Reservation(reserveItem, reserveUser);
-        reserveItem.setReserved(true);
+        Item reserveItem = itemService.getById(id);
+        Reservation reservation = helper.reserveItem(reserveItem, reserveUser);
         itemService.saveOrUpdate(reserveItem);
         reserveService.saveOrUpdate(reservation);
+        model.addAttribute("message" , helper.successReserve(reserveItem, reserveUser));
 
         return "redirect:/";
     }

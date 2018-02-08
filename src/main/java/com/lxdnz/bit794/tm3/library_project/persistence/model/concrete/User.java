@@ -11,7 +11,6 @@ import java.util.List;
 @Entity
 public class User extends AbstractModelClass {
 
-
     @Column(nullable = false, unique = true)
     private String username;
 

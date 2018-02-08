@@ -103,8 +103,9 @@ public class LoanServiceTest {
         /**
          * Delete the loan / return the item to library
          */
-        item.setRented(false);
-        itemService.saveOrUpdate(item);
+        Item deleteItem = itemService.getById(item.getId());
+        deleteItem.setRented(false);
+        itemService.saveOrUpdate(deleteItem);
         loanService.delete(loan.getId());
         activeLoans = loanService.getActiveLoans();
         // check loan is NOT active

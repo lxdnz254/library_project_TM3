@@ -13,7 +13,17 @@
 
     <div id="content" class="container-fluid">
         <div class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-3 col-sm-push-9">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <span sec:authorize="isAuthenticated()">Welcome <span sec:authentication="name"></span></span>
+                    </div>
+                    <div class="panel-body" th:replace="fragments/userdetails :: userdetails">
+                        <span>Login Status</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9 col-sm-pull-3">
                 <div class="panel panel-primary">
                     <div class="panel-heading">Search The Library</div>
                     <div class="panel-body">
@@ -40,13 +50,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <span sec:authorize="isAuthenticated()">Welcome <span sec:authentication="name"></span></span>
-                    </div>
-                    <div class="panel-body" th:replace="fragments/userdetails :: userdetails">
-                        <span>Login Status</span>
+
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-12">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">System Information</div>
+                    <div class="panel-body">
+                        <span th:text="${message}">The Library System information goes here</span>
                     </div>
                 </div>
             </div>

@@ -9,6 +9,6 @@ import java.util.List;
 public interface ReserveService extends CRUDService<Reservation> {
 
     Reservation getByItem(Item item);
-    Reservation getByUser(User user);
+    List<Reservation> getByUser(User user);
     List<?> getActiveReserves();
 }
