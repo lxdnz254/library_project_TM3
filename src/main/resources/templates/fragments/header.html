@@ -43,13 +43,13 @@
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
                     <ul class="nav navbar-nav">
-                        <li><a href="/" th:href="@{itemform}" sec:authorize="hasAuthority('ADMIN')">Add Item</a></li>
-                        <li><a href="/" th:href="@{signup}" sec:authorize="hasAuthority('ADMIN')">Add User</a></li>
-                        <li><a href="/" th:href="@{users}" sec:authorize="hasAuthority('ADMIN')">View Users</a></li>
-                        <li><a href="/" th:href="@{loans}" sec:authorize="hasAuthority('ADMIN')">View Loans</a></li>
-                        <li><a href="/" th:href="@{reserves}" sec:authorize="hasAuthority('ADMIN')">View Reservations</a></li>
-                        <li><a href="/" th:href="@{userloans}" sec:authorize="hasAuthority('USER')">Your Loans</a></li>
-                        <li><a href="/" th:href="@{userreserves}" sec:authorize="hasAuthority('USER')">Your Reservations</a></li>
+                        <li><a href="/" th:href="@{~/itemform}" sec:authorize="hasAuthority('ADMIN')">Add Item</a></li>
+                        <li><a href="/" th:href="@{~/signup}" sec:authorize="hasAuthority('ADMIN')">Add User</a></li>
+                        <li><a href="/" th:href="@{~/users}" sec:authorize="hasAuthority('ADMIN')">View Users</a></li>
+                        <li><a href="/" th:href="@{~/loans}" sec:authorize="hasAuthority('ADMIN')">View Loans</a></li>
+                        <li><a href="/" th:href="@{~/reserves}" sec:authorize="hasAuthority('ADMIN')">View Reservations</a></li>
+                        <li><a href="/" th:href="@{~/userloans}" sec:authorize="hasAuthority('USER')">Your Loans</a></li>
+                        <li><a href="/" th:href="@{~/userreserves}" sec:authorize="hasAuthority('USER')">Your Reservations</a></li>
                     </ul>
                 </div>
             </div>

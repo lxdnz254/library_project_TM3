@@ -4,6 +4,10 @@ import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Item;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.enums.ItemType;
 import org.hibernate.validator.constraints.NotBlank;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class ItemForm {
 
     private static final String NOT_BLANK_MESSAGE = "{notBlank.message}";
@@ -36,6 +40,12 @@ public class ItemForm {
 
     public void setType(ItemType type) {
         this.type = type;
+    }
+
+    public List<ItemType> getItemTypeList() {
+        List<ItemType> list = new ArrayList<>();
+        Arrays.asList(ItemType.values()).forEach(list :: add);
+        return list;
     }
 
     public Item createItem() {

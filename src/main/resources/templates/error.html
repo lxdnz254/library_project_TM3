@@ -1,19 +1,33 @@
-<html lang="en">
-<head>
-    <title>Error Occurred</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="en">
+
+    <title>Waitomo District Library</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-<div class="container">
-    <h1>Error Occurred!</h1>
-    <div class="alert alert-danger" role="alert">
-        <b>
-            [<span th:text="${status}">status</span>]
-            <span th:text="${error}">error</span>
-        </b>
-        <p th:text="${message}">message</p>
-    </div>
-</div>
-</body>
 
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+    <div id="content" class="container-fluid">
+
+        <div class="row justify-content-md-center">
+            <div class="col-12">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">System Information</div>
+                    <div class="panel-body">
+                        <div th:replace="/fragments/error :: error">The Library System information goes here</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<footer>
+    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+</footer>
+</body>
 </html>

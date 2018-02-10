@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head lang="en">
 
     <title>Waitomo District Library</title>
@@ -7,65 +7,53 @@
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
+
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 
-    <div id="content">
-        <form class="form-horizontal" th:action="@{/logout}" method="post">
-            <div class="form-group">
-                <div class="col-sm-10"><h2>User Details</h2></div>
-                <div class="col-sm-2" style="padding-top: 25px;">
-          <span sec:authorize="isAuthenticated()">
-              <input type="submit" value="Sign Out"/>
-           </span>
+    <div id="content" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-sm-push-9">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <span sec:authorize="isAuthenticated()">Welcome <span sec:authentication="name"></span></span>
+                    </div>
+                    <div class="panel-body" th:replace="fragments/userdetails :: userdetails">
+                        <span>Login Status</span>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">User Type:</label>
-                <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${user.getRoles()}">Roles</p></div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Username:</label>
-                <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${user.getUsername()}">Username</p></div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">First Name:</label>
-                <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${user.getFirstName()}">First Name</p>
+            <div class="col-sm-9 col-sm-pull-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Selected User</div>
+                    <div class="panel-body">
+                        <div class="item-container">
+
+                            <div th:replace="fragments/users :: usershow">
+                                The User
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Last Name:</label>
-                <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${user.getLastName()}">Last Name</p>
+
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-12">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">System Information</div>
+                    <div class="panel-body">
+                        <span th:text="${message}">The Library System information goes here</span>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Address:</label>
-                <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${user.getStreetAddress()}">Address</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Town:</label>
-                <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${user.getTown()}">Town</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Phone:</label>
-                <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${user.getContactPhoneNumber()}">Phone</p>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 
 </div>
 <footer>
-    <div th:replace="fragments/footer :: footer">The Footer</div>
+    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
 </footer>
 </body>
 </html>

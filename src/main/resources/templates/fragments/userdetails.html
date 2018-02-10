@@ -5,9 +5,10 @@
 <body>
     <div class="container-fluid" th:fragment="userdetails">
         <div class="panel-body">
-            <div sec:authorize="isAuthenticated()">
+            <div th:if="${user != null}" sec:authorize="isAuthenticated()">
                 <p><span class="bold">Name: <span th:text="${user.firstName}"> </span> <span th:text="${user.lastName}"></span></span></p>
                 <p><span class="bold">Phone: <span th:text="${user.contactPhoneNumber}"></span></span></p>
+                <p sec:authorize="hasAuthority('USER')"><span class="bold">Current Balance: <span th:text="${user.currentBalance}"></span></span></p>
             </div>
             <div sec:authorize="!isAuthenticated()">
                 <p> You are currently not logged in.</p>

@@ -58,12 +58,14 @@ public class ItemController {
 
     @RequestMapping("item/{id}")
     public String showItem(@PathVariable Long id, Model model){
+        model.addAttribute("user", getUser());
         model.addAttribute("item", itemService.getById(id));
         return "itemshow";
     }
 
     @RequestMapping("item/edit/{id}")
     public String editItem(@PathVariable Long id, Model model){
+        model.addAttribute("user", getUser());
         model.addAttribute("item", itemService.getById(id));
         return "edititem";
     }
@@ -83,9 +85,7 @@ public class ItemController {
     @RequestMapping("item/reserve/{id}")
     public String reserveItem(@PathVariable Long id, Model model, Helper helper) {
         if (!userHasItemLoaned(id)) {
-            Authentication auth = getContext().getAuthentication();
-            String name = auth.getName(); //get logged in username
-            User reserveUser = userService.findByUsername(name);
+            User reserveUser = getUser();
             Item reserveItem = itemService.getById(id);
             Reservation reservation = helper.reserveItem(reserveItem, reserveUser);
             itemService.saveOrUpdate(reserveItem);
@@ -101,12 +101,13 @@ public class ItemController {
     @RequestMapping("item/checkout/{id}")
     public String checkoutItem(@PathVariable Long id) {
         Item checkoutItem = itemService.getById(id);
-        Authentication auth = getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
-        User checkoutUser = userService.findByUsername(name);
+        User checkoutUser = getUser();
         Loan newLoan = new Loan(checkoutItem, checkoutUser);
         checkoutItem.setRented(true);
+        checkoutUser.setCurrentBalance(checkoutUser.getCurrentBalance()
+                .add( checkoutItem.getItemType().getPrice() ));
         itemService.saveOrUpdate(checkoutItem);
+        userService.saveOrUpdate(checkoutUser);
         loanService.saveOrUpdate(newLoan);
         return "redirect:/";
     }
@@ -125,15 +126,32 @@ public class ItemController {
 
     @RequestMapping("/loans")
     public String allLoans(Model model) {
-
+        model.addAttribute("user", getUser());
         model.addAttribute("loans", loanService.getActiveLoans());
 
         return "loans";
     }
 
+    @RequestMapping("/userloans")
+    public String userLoans(Model model) {
+        User currentUser = getUser();
+        model.addAttribute("user", currentUser);
+        model.addAttribute("loans", loanService.getByUserID(currentUser.getId()));
+        return "loans";
+    }
+
     @RequestMapping("/reserves")
     public String allReserves(Model model) {
+        model.addAttribute("user", getUser());
         model.addAttribute("reserves", reserveService.getActiveReserves());
+        return "reserves";
+    }
+
+    @RequestMapping("/userreserves")
+    public String userReserves(Model model) {
+        User currentUser = getUser();
+        model.addAttribute("user", currentUser);
+        model.addAttribute("reserves", reserveService.getByUser(currentUser));
         return "reserves";
     }
 
@@ -148,7 +166,7 @@ public class ItemController {
 
 
     /**
-     * Assertions for Item actions
+     * Helpers for Item actions
      */
 
     /**
@@ -158,13 +176,15 @@ public class ItemController {
      */
 
     private boolean userHasItemLoaned(Long id) {
-        Authentication auth = getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
-        User reserveUser = userService.findByUsername(name);
+        User reserveUser = getUser();
         Item reserveItem = itemService.getById(id);
         Loan loanCheck = loanService.getByItemID(reserveItem.getId());
         return (loanCheck != null && loanCheck.getUserID().equals(reserveUser.getId()));
     }
 
-
+    private User getUser() {
+        Authentication auth = getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        return userService.findByUsername(name);
+    }
 }

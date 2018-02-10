@@ -5,13 +5,17 @@ import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
 import com.lxdnz.bit794.tm3.library_project.services.RoleService;
 import com.lxdnz.bit794.tm3.library_project.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.math.BigDecimal;
 import java.util.List;
+
+import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 @Controller
 public class UserController {
@@ -31,23 +35,26 @@ public class UserController {
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String listUser(Model model) {
+        model.addAttribute("user", getUser());
         model.addAttribute("users", userService.listAll());
         return "users";
     }
 
     @RequestMapping("user/{id}")
     public String showUser(@PathVariable Long id, Model model){
-        model.addAttribute("user", userService.getById(id));
+        model.addAttribute("user", getUser());
+        model.addAttribute("userID", userService.getById(id));
         return "usershow";
     }
 
     @RequestMapping("user/edit/{id}")
     public String editUser(@PathVariable Long id, Model model){
-        model.addAttribute("user", userService.getById(id));
+        model.addAttribute("user", getUser());
+        model.addAttribute("userID", userService.getById(id));
         return "edituser";
     }
 
-    @RequestMapping(value = "user", method = RequestMethod.POST)
+    @RequestMapping(value = "userID", method = RequestMethod.POST)
     public String saveUser(User user){
         // make sure the updated user has the correct role
         Role role = roleService.getById(1L);
@@ -69,5 +76,20 @@ public class UserController {
         // then delete user
         userService.delete(id);
         return "redirect:/users";
+    }
+
+    @RequestMapping("/paid/{id}")
+    public String userPays(@PathVariable Long id) {
+        User payee = userService.getById(id);
+        payee.setCurrentBalance(BigDecimal.ZERO);
+        userService.saveOrUpdate(payee);
+        return "redirect:/user/{id}";
+    }
+
+    // Gets the current logged in user
+    private User getUser() {
+        Authentication auth = getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        return userService.findByUsername(name);
     }
 }
