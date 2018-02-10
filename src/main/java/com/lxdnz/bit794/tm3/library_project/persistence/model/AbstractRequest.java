@@ -2,6 +2,9 @@ package com.lxdnz.bit794.tm3.library_project.persistence.model;
 
 import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Item;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
+import com.lxdnz.bit794.tm3.library_project.services.ItemService;
+import com.lxdnz.bit794.tm3.library_project.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -18,6 +21,9 @@ public class AbstractRequest extends AbstractModelClass {
     @Column
     private Long itemID;
     private Long userID;
+    private String requestUsername;
+    private String requestItemTitle;
+    private String requestItemCreator;
 
     public Item getItem() {
         return item;
@@ -43,11 +49,35 @@ public class AbstractRequest extends AbstractModelClass {
         this.user = user;
     }
 
-    public void setItemID(Long itemID) {
+    protected void setItemID(Long itemID) {
         this.itemID = itemID;
     }
 
-    public void setUserID(Long userID) {
+    protected void setUserID(Long userID) {
         this.userID = userID;
+    }
+
+    public String getRequestUsername() {
+        return requestUsername;
+    }
+
+    public void setRequestUsername(String requestUsername) {
+        this.requestUsername = requestUsername;
+    }
+
+    public String getRequestItemTitle() {
+        return requestItemTitle;
+    }
+
+    public void setRequestItemTitle(String requestItemTitle) {
+        this.requestItemTitle = requestItemTitle;
+    }
+
+    public String getRequestItemCreator() {
+        return requestItemCreator;
+    }
+
+    public void setRequestItemCreator(String requestItemCreator) {
+        this.requestItemCreator = requestItemCreator;
     }
 }

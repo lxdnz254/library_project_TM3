@@ -42,7 +42,7 @@ public class HomePageController {
         Authentication auth = getContext().getAuthentication();
         String name = auth.getName(); //get logged in username
         model.addAttribute("user", userService.findByUsername(name));
-        model.addAttribute("message", "The Library Information goes Here");
+        //model.addAttribute("message", "The Library Information goes Here");
 
         return "home";
     }

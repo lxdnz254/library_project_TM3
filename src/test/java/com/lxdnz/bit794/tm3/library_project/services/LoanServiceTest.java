@@ -87,8 +87,12 @@ public class LoanServiceTest {
         assertEquals(checkUser.getCurrentBalance(), initialBalance.add( item.getItemType().getPrice()));
 
         // Test we can get Loan by User and Item
+        /*
+         * These are lists of Items and Users as there may be more than one Loan
+         * for an Item or User in the DB
+         */
         Loan itemLoan = loanService.getByItemID(item.getId());
-        assertEquals(itemLoan.getId(), loan.getId());
+        assertEquals(itemLoan.getId(), item.getId());
 
         List<?> userLoans = loanService.getByUserID(user.getId());
         assertTrue(userLoans.contains(loan));

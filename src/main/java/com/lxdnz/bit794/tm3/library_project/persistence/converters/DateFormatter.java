@@ -10,8 +10,11 @@ import java.util.Date;
 public class DateFormatter {
 
     public String formatDate(Date date) {
-        String strDateFormat = "YYYY-MM-DD";
+
+        String strDateFormat = "MMM dd yyyy";
         DateFormat dateFormat = new SimpleDateFormat(strDateFormat);
+
+        DateFormat dateInstance = SimpleDateFormat.getDateInstance();
         return dateFormat.format(date);
     }
 }

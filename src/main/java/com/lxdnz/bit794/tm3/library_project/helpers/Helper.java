@@ -40,6 +40,10 @@ public class Helper {
                 + reserveItem.getTitle();
     }
 
+    public String userHasItemOnLoan() {
+        return "User already has item on Loan, so cannot reserve";
+    }
+
     /**
      * Loan Helper methods
      */

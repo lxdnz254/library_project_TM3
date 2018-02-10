@@ -9,6 +9,6 @@ import java.util.List;
 public interface LoanService extends CRUDService<Loan> {
 
     Loan getByItemID(Long itemID);
-    List<?> getByUserID(Long userID);
-    List<?> getActiveLoans();
+    List<Loan> getByUserID(Long userID);
+    List<Loan> getActiveLoans();
 }

@@ -21,6 +21,9 @@ public class Reservation extends AbstractRequest {
     public Reservation(Item item, User user) {
         this.setItemID(item.getId());
         this.setUserID(user.getId());
+        this.setRequestUsername(user.getUsername());
+        this.setRequestItemTitle(item.getTitle());
+        this.setRequestItemCreator(item.getCreator());
         this.stillReserved = true;
     }
 

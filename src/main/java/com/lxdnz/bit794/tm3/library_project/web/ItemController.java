@@ -12,9 +12,13 @@ import com.lxdnz.bit794.tm3.library_project.services.ReserveService;
 import com.lxdnz.bit794.tm3.library_project.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
@@ -78,14 +82,18 @@ public class ItemController {
 
     @RequestMapping("item/reserve/{id}")
     public String reserveItem(@PathVariable Long id, Model model, Helper helper) {
-        Authentication auth = getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
-        User reserveUser = userService.findByUsername(name);
-        Item reserveItem = itemService.getById(id);
-        Reservation reservation = helper.reserveItem(reserveItem, reserveUser);
-        itemService.saveOrUpdate(reserveItem);
-        reserveService.saveOrUpdate(reservation);
-        model.addAttribute("message" , helper.successReserve(reserveItem, reserveUser));
+        if (!userHasItemLoaned(id)) {
+            Authentication auth = getContext().getAuthentication();
+            String name = auth.getName(); //get logged in username
+            User reserveUser = userService.findByUsername(name);
+            Item reserveItem = itemService.getById(id);
+            Reservation reservation = helper.reserveItem(reserveItem, reserveUser);
+            itemService.saveOrUpdate(reserveItem);
+            reserveService.saveOrUpdate(reservation);
+            model.addAttribute("message", helper.successReserve(reserveItem, reserveUser));
+        } else {
+            model.addAttribute("message", helper.userHasItemOnLoan());
+        }
 
         return "redirect:/";
     }
@@ -114,5 +122,49 @@ public class ItemController {
 
         return "redirect:/";
     }
+
+    @RequestMapping("/loans")
+    public String allLoans(Model model) {
+
+        model.addAttribute("loans", loanService.getActiveLoans());
+
+        return "loans";
+    }
+
+    @RequestMapping("/reserves")
+    public String allReserves(Model model) {
+        model.addAttribute("reserves", reserveService.getActiveReserves());
+        return "reserves";
+    }
+
+    @RequestMapping("/unreserve/{id}")
+    public String unreserveItem(@PathVariable Long id) {
+        Reservation unreserveReservation = reserveService.getById(id);
+        unreserveReservation.setStillReserved(false);
+        reserveService.saveOrUpdate(unreserveReservation);
+
+        return "redirect:/";
+    }
+
+
+    /**
+     * Assertions for Item actions
+     */
+
+    /**
+     * checks if a User has Item on loan already
+     * @param id
+     * @return
+     */
+
+    private boolean userHasItemLoaned(Long id) {
+        Authentication auth = getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        User reserveUser = userService.findByUsername(name);
+        Item reserveItem = itemService.getById(id);
+        Loan loanCheck = loanService.getByItemID(reserveItem.getId());
+        return (loanCheck != null && loanCheck.getUserID().equals(reserveUser.getId()));
+    }
+
 
 }

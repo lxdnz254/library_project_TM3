@@ -131,5 +131,9 @@ public class ReserveServiceTest {
         List<?> inactiveCheck = reserveService.getActiveReserves();
         assertEquals(inactiveCheck.size(), activeCount);
 
+        // All passed, reservation will remain in DB flagged as inactive
+        // For DB integrity (leaving in original state) delete reservation
+        reserveService.delete(removeReservation.getId());
+
     }
 }
