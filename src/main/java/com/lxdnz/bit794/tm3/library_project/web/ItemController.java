@@ -72,6 +72,10 @@ public class ItemController {
 
     @RequestMapping(value = "item", method = RequestMethod.POST)
     public String saveItem(Item item){
+        // Keep the reservation and checkout status the same on editing
+        Item oldItem = itemService.getById(item.getId());
+        item.setIsReserved(oldItem.getIsReserved());
+        item.setIsRented(oldItem.getIsRented());
         itemService.saveOrUpdate(item);
         return "redirect:/item/" + item.getId();
     }
@@ -79,7 +83,7 @@ public class ItemController {
     @RequestMapping("item/delete/{id}")
     public String deleteItem(@PathVariable Long id){
         itemService.delete(id);
-        return "redirect:/items";
+        return "redirect:/";
     }
 
     @RequestMapping("item/reserve/{id}")
@@ -103,7 +107,7 @@ public class ItemController {
         Item checkoutItem = itemService.getById(id);
         User checkoutUser = getUser();
         Loan newLoan = new Loan(checkoutItem, checkoutUser);
-        checkoutItem.setRented(true);
+        checkoutItem.setIsRented(true);
         checkoutUser.setCurrentBalance(checkoutUser.getCurrentBalance()
                 .add( checkoutItem.getItemType().getPrice() ));
         itemService.saveOrUpdate(checkoutItem);
@@ -116,9 +120,9 @@ public class ItemController {
     public String returnItem(@PathVariable Long id) {
         Item returnItem = itemService.getById(id);
         Loan returnLoan = loanService.getByItemID(returnItem.getId());
-        returnItem.setRented(false);
+        returnItem.setIsRented(false);
         itemService.saveOrUpdate(returnItem);
-        // check for reservation here
+        // check for reservation here and send to new user
         loanService.delete(returnLoan.getId());
 
         return "redirect:/";
@@ -159,6 +163,9 @@ public class ItemController {
     public String unreserveItem(@PathVariable Long id) {
         Reservation unreserveReservation = reserveService.getById(id);
         unreserveReservation.setStillReserved(false);
+        Item item = itemService.getById(unreserveReservation.getItemID());
+        item.setIsReserved(false);
+        itemService.saveOrUpdate(item);
         reserveService.saveOrUpdate(unreserveReservation);
 
         return "redirect:/";

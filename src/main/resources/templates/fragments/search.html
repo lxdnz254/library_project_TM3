@@ -30,8 +30,8 @@
                            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/item/edit/' + item.id}">Edit</a></td>
                            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/item/delete/' + item.id}">Delete</a></td>
 
-                           <td th:if="${!item.isRented()}" sec:authorize="hasAuthority('USER')"><a th:href="${'/item/checkout/' + item.id}">Checkout</a></td>
-                           <td th:if="${item.isRented()}" sec:authorize="hasAuthority('USER')"><a th:if="${!item.isReserved()}" th:href="${'/item/reserve/' + item.id}">Reserve</a></td>
+                           <td th:if="${!item.isRented}" sec:authorize="hasAuthority('USER')"><a th:href="${'/item/checkout/' + item.id}">Checkout</a></td>
+                           <td th:if="${item.isRented}" sec:authorize="hasAuthority('USER')"><a th:if="${!item.isReserved}" th:href="${'/item/reserve/' + item.id}">Reserve</a></td>
                        </tr>
                    </table>
 
@@ -65,8 +65,8 @@
                             <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/item/edit/' + item.id}">Edit</a></td>
                             <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/item/delete/' + item.id}">Delete</a></td>
 
-                            <td th:if="${!item.isRented()}" sec:authorize="hasAuthority('USER')"><a th:href="${'/item/checkout/' + item.id}">Checkout</a></td>
-                            <td th:if="${item.isRented()}" sec:authorize="hasAuthority('USER')"><a th:if="${!item.isReserved()}" th:href="${'/item/reserve/' + item.id}">Reserve</a></td>
+                            <td th:if="${!item.isRented}" sec:authorize="hasAuthority('USER')"><a th:href="${'/item/checkout/' + item.id}">Checkout</a></td>
+                            <td th:if="${item.isRented}" sec:authorize="hasAuthority('USER')"><a th:if="${!item.isReserved}" th:href="${'/item/reserve/' + item.id}">Reserve</a></td>
                         </tr>
                     </table>
 

@@ -48,7 +48,7 @@ public class ReserveServiceTest {
          *   Create Reservation method to be implemented in the System
          */
         Reservation testReservation = new Reservation(testItem, testUser);
-        testItem.setReserved(true);
+        testItem.setIsReserved(true);
         itemService.saveOrUpdate(testItem);
         reserveService.saveOrUpdate(testReservation);
 
@@ -72,12 +72,12 @@ public class ReserveServiceTest {
         // finally remove test object from database and remove reserved status of item
         // method for un-reserving an object
         Item removeTestItem = itemService.getById(testItem.getId());
-        removeTestItem.setReserved(false);
+        removeTestItem.setIsReserved(false);
         itemService.saveOrUpdate(removeTestItem);
         reserveService.delete(testReservation.getId());
         // assertions
         assertNull(reserveService.getById(testReservation.getId()));
-        assertFalse(itemService.getById(testItem.getId()).isReserved());
+        assertFalse(itemService.getById(testItem.getId()).getIsReserved());
         // checking the reserve is no longer active
         List<?> secondActiveCheck = reserveService.getActiveReserves();
         assertEquals(secondActiveCheck.size(), activeCount);
@@ -105,7 +105,7 @@ public class ReserveServiceTest {
 
         // check Item has been updated an reservation exists
         Item checkItem = itemService.getById(2L);
-        assertTrue(checkItem.isReserved());
+        assertTrue(checkItem.getIsReserved());
 
         //check reservation exists
         List<?> activeCheck = reserveService.getActiveReserves();
@@ -125,7 +125,7 @@ public class ReserveServiceTest {
 
         // check Item has been updated an reservation exists
         Item uncheckItem = itemService.getById(2L);
-        assertFalse(uncheckItem.isReserved());
+        assertFalse(uncheckItem.getIsReserved());
 
         //check reservation exists
         List<?> inactiveCheck = reserveService.getActiveReserves();

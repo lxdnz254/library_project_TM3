@@ -53,7 +53,7 @@ public class LoanServiceTest {
          * generate Loan method
          */
         Loan loan = new Loan(item, user); // new loan object
-        item.setRented(true); // flag item as loaned
+        item.setIsRented(true); // flag item as loaned
         // add rental price of loan to user balance
         user.setCurrentBalance(user.getCurrentBalance().add( item.getItemType().getPrice() ));
         // loan should auto save return date
@@ -80,7 +80,7 @@ public class LoanServiceTest {
 
         // test item is updated to rented state
         Item checkItem = itemService.getById(item.getId());
-        assertTrue(checkItem.isRented());
+        assertTrue(checkItem.getIsRented());
 
         // Test user balance is updated correctly
         User checkUser = userService.getById(user.getId());
@@ -108,7 +108,7 @@ public class LoanServiceTest {
          * Delete the loan / return the item to library
          */
         Item deleteItem = itemService.getById(item.getId());
-        deleteItem.setRented(false);
+        deleteItem.setIsRented(false);
         itemService.saveOrUpdate(deleteItem);
         loanService.delete(loan.getId());
         activeLoans = loanService.getActiveLoans();

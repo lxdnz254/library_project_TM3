@@ -21,7 +21,7 @@ public class Helper {
     public Reservation reserveItem(Item item, User user) {
 
         Reservation reservation = new Reservation(item, user);
-        item.setReserved(true);
+        item.setIsReserved(true);
         return reservation;
     }
 
@@ -31,7 +31,7 @@ public class Helper {
      * @param item
      */
     public void unreserveReservation(Reservation removeReservation, Item item) {
-        item.setReserved(false);
+        item.setIsReserved(false);
         removeReservation.setStillReserved(false);
     }
 

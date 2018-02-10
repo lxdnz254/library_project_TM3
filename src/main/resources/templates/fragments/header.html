@@ -50,6 +50,8 @@
                         <li><a href="/" th:href="@{~/reserves}" sec:authorize="hasAuthority('ADMIN')">View Reservations</a></li>
                         <li><a href="/" th:href="@{~/userloans}" sec:authorize="hasAuthority('USER')">Your Loans</a></li>
                         <li><a href="/" th:href="@{~/userreserves}" sec:authorize="hasAuthority('USER')">Your Reservations</a></li>
+                        <li><a href="/" class="btn btn-large btn-danger" style="float: right;"
+                               th:href="@{~/console}" sec:authorize="hasAuthority('ADMIN')">Console</a></li>
                     </ul>
                 </div>
             </div>

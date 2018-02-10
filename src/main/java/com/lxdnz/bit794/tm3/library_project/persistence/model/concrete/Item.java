@@ -42,19 +42,19 @@ public class Item extends AbstractModelClass {
         this.creator = creator;
     }
 
-    public boolean isRented() {
+    public boolean getIsRented() {
         return isRented;
     }
 
-    public void setRented(boolean rented) {
+    public void setIsRented(boolean rented) {
         isRented = rented;
     }
 
-    public boolean isReserved() {
+    public boolean getIsReserved() {
         return isReserved;
     }
 
-    public void setReserved(boolean reserved) {
+    public void setIsReserved(boolean reserved) {
         isReserved = reserved;
     }
 

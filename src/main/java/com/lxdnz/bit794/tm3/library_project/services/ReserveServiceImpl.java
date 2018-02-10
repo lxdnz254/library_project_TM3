@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReserveServiceImpl implements ReserveService {
@@ -49,7 +50,12 @@ public class ReserveServiceImpl implements ReserveService {
 
     @Override
     public List<Reservation> getByUser(User user) {
-        return reserveRepository.findAllByUserID(user.getId());
+        // Get the entire list of reservation by a user
+        List<Reservation> userReserves = reserveRepository.findAllByUserID(user.getId());
+        // filter against the active reserves
+        return userReserves.stream()
+                .filter(getActiveReserves()::contains)
+                .collect(Collectors.toList());
     }
 
     @Override
