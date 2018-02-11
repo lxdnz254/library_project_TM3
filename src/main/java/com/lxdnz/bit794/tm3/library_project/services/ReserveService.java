@@ -10,5 +10,5 @@ public interface ReserveService extends CRUDService<Reservation> {
 
     Reservation getByItem(Item item);
     List<Reservation> getByUser(User user);
-    List<?> getActiveReserves();
+    List<Reservation> getActiveReserves();
 }

@@ -81,8 +81,14 @@ public class ItemController {
     }
 
     @RequestMapping("item/delete/{id}")
-    public String deleteItem(@PathVariable Long id){
-        itemService.delete(id);
+    public String deleteItem(@PathVariable Long id, Model model){
+        if (!itemIsOnLoan(id) && !itemIsReserved(id)) {
+            itemService.delete(id);
+        }
+        else
+        {
+            model.addAttribute("message", "Item is currently reserved or on loan so cannot be deleted");
+        }
         return "redirect:/";
     }
 
@@ -121,8 +127,9 @@ public class ItemController {
         Item returnItem = itemService.getById(id);
         Loan returnLoan = loanService.getByItemID(returnItem.getId());
         returnItem.setIsRented(false);
+        // check for reservation
+        checkReservation(returnItem);
         itemService.saveOrUpdate(returnItem);
-        // check for reservation here and send to new user
         loanService.delete(returnLoan.getId());
 
         return "redirect:/";
@@ -193,5 +200,40 @@ public class ItemController {
         Authentication auth = getContext().getAuthentication();
         String name = auth.getName(); //get logged in username
         return userService.findByUsername(name);
+    }
+
+    private void checkReservation(Item returnItem) {
+        // check for reservation here and send to new user
+        if (returnItem.getIsReserved()) {
+
+            Reservation reserved = reserveService.getByItem(returnItem);
+            User sendToUser = userService.getById(reserved.getUserID());
+            Loan newLoan = new Loan (returnItem, sendToUser);
+            sendToUser.setCurrentBalance(sendToUser.getCurrentBalance()
+                    .add(returnItem.getItemType().getPrice()));
+            returnItem.setIsRented(true);
+            returnItem.setIsReserved(false);
+            reserved.setStillReserved(false);
+            userService.saveOrUpdate(sendToUser);
+            reserveService.saveOrUpdate(reserved);
+            loanService.saveOrUpdate(newLoan);
+
+        }
+    }
+
+    private boolean itemIsOnLoan(Long id) {
+
+        return loanService.getByItemID(id) != null;
+    }
+
+    private boolean itemIsReserved(Long id) {
+        List<Reservation> activeReserves = reserveService.getActiveReserves();
+        for(Reservation reservation: activeReserves) {
+            if (reservation.getItemID() == id) {
+                return true;
+            }
+        }
+        return false;
+
     }
 }

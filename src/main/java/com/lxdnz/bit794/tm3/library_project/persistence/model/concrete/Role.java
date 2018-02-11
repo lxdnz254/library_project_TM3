@@ -2,10 +2,7 @@ package com.lxdnz.bit794.tm3.library_project.persistence.model.concrete;
 
 import com.lxdnz.bit794.tm3.library_project.persistence.model.AbstractModelClass;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +10,13 @@ import java.util.List;
 public class Role extends AbstractModelClass {
 
     private String role;
-
+    /*
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable
     // ~ defaults to @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "role_id"),
     //     inverseJoinColumns = @joinColumn(name = "user_id"))
+    */
+    @Transient
     private List<User> users = new ArrayList<>();
 
     public String getRole() {

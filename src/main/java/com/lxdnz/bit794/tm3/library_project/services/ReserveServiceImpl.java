@@ -45,7 +45,12 @@ public class ReserveServiceImpl implements ReserveService {
 
     @Override
     public Reservation getByItem(Item item) {
-        return reserveRepository.findOneByItemID(item.getId());
+        List<Reservation> itemReserves = reserveRepository.findAllByItemID(item.getId());
+        List<Reservation> activeItemReserve = itemReserves.stream()
+                .filter(getActiveReserves()::contains)
+                .collect(Collectors.toList());
+
+        return activeItemReserve.get(0);
     }
 
     @Override

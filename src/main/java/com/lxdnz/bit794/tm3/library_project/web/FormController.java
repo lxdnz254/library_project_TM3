@@ -1,5 +1,6 @@
 package com.lxdnz.bit794.tm3.library_project.web;
 
+import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Role;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.enums.ItemType;
 import com.lxdnz.bit794.tm3.library_project.services.ItemService;
@@ -65,6 +66,7 @@ public class FormController {
         }
         User user = userService.saveOrUpdate(signupForm.createUser());
         user.addRole(roleService.getById(1L));
+
         userService.saveOrUpdate(user);
 
         model.addAttribute("user", getUser());

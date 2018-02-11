@@ -12,5 +12,6 @@ public interface ReserveRepository extends CrudRepository<Reservation, Long> {
     List<Reservation> findReservationByStillReservedIsTrue();
 
     List<Reservation> findAllByUserID(Long userID);
+    List<Reservation> findAllByItemID(Long itemID);
     Reservation findOneByItemID(Long itemID);
 }

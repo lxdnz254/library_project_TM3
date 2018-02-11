@@ -1,7 +1,11 @@
 package com.lxdnz.bit794.tm3.library_project.web;
 
+import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Loan;
+import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Reservation;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Role;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
+import com.lxdnz.bit794.tm3.library_project.services.LoanService;
+import com.lxdnz.bit794.tm3.library_project.services.ReserveService;
 import com.lxdnz.bit794.tm3.library_project.services.RoleService;
 import com.lxdnz.bit794.tm3.library_project.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +26,8 @@ public class UserController {
 
     private UserService userService;
     private RoleService roleService;
+    private LoanService loanService;
+    private ReserveService reserveService;
 
     @Autowired
     public void setRoleService(RoleService roleService) {
@@ -31,6 +37,16 @@ public class UserController {
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    @Autowired
+    public void setLoanService(LoanService loanService) {
+        this.loanService = loanService;
+    }
+
+    @Autowired
+    public void setReserveService(ReserveService reserveService) {
+        this.reserveService = reserveService;
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
@@ -56,6 +72,7 @@ public class UserController {
 
     @RequestMapping(value = "userID", method = RequestMethod.POST)
     public String saveUser(User user){
+
         // make sure the updated user has the correct role
         Role role = roleService.getById(1L);
         List<Role> userRoles = user.getRoles();
@@ -67,14 +84,21 @@ public class UserController {
     }
 
     @RequestMapping("user/delete/{id}")
-    public String deleteItem(@PathVariable Long id){
-        // remove user role first to maintain db integrity
-        User deleteUser = userService.getById(id);
-        Role role = roleService.getById(1L);
-        deleteUser.removeRole(role);
-        userService.saveOrUpdate(deleteUser);
-        // then delete user
-        userService.delete(id);
+    public String deleteUser(@PathVariable Long id, Model model){
+        // check Loans and reserves for user before deleting
+        if (!userHasLoans(id) && !userhasReserves(id)) {
+            // remove user role first to maintain db integrity
+            User deleteUser = userService.getById(id);
+            Role role = roleService.getById(1L);
+            deleteUser.removeRole(role);
+            userService.saveOrUpdate(deleteUser);
+            // then delete user
+            userService.delete(id);
+        }
+        else
+        {
+            model.addAttribute("message", "User has current Loans or Reserves, cannot be deleted");
+        }
         return "redirect:/users";
     }
 
@@ -91,5 +115,19 @@ public class UserController {
         Authentication auth = getContext().getAuthentication();
         String name = auth.getName(); //get logged in username
         return userService.findByUsername(name);
+    }
+
+    private boolean userHasLoans(Long id) {
+        return !loanService.getByUserID(id).isEmpty();
+    }
+
+    private boolean userhasReserves(Long id) {
+        List<Reservation> activeReserves = reserveService.getActiveReserves();
+        for(Reservation reservation: activeReserves) {
+            if (reservation.getUserID() == id) {
+                return true;
+            }
+        }
+        return false;
     }
 }

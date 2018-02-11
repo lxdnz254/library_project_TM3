@@ -12,9 +12,8 @@
             <div class="form-group">
                 <div class="col-sm-10"><h2>Item Details</h2></div>
                 <div class="col-sm-2" style="padding-top: 25px;">
-          <span sec:authorize="isAuthenticated()">
-              <input type="submit" value="Sign Out"/>
-           </span>
+                    <span th:if="${!item.isRented}" sec:authorize="hasAuthority('USER')"><a class="btn btn-small btn-primary" th:href="${'/item/checkout/' + item.id}">Checkout</a></span>
+                    <span th:if="${item.isRented}" sec:authorize="hasAuthority('USER')"><a class="btn btn-small btn-primary" th:if="${!item.isReserved}" th:href="${'/item/reserve/' + item.id}">Reserve</a></span>
                 </div>
             </div>
             <div class="form-group">
