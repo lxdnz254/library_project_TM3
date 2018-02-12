@@ -31,8 +31,8 @@
                             <form action="/" th:object="${search}" th:action="@{/search}" method="post">
                                 <fieldset>
                                     <label for="searchType" class="col-lg-2 control-label">Search By: </label>
-                                    <select id="searchType" th:field="*{searchBy}">
-                                        <option th:each="searchFor : ${search.getSearchByList()}"
+                                    <select id="searchType" th:field="*{searchItem}">
+                                        <option th:each="searchFor : ${search.getSearchItemList()}"
                                                 th:value="${{searchFor}}"
                                                 th:text="${searchFor}">Wireframe</option>
                                     </select>

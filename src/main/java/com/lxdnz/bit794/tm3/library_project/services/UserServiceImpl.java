@@ -1,15 +1,19 @@
 package com.lxdnz.bit794.tm3.library_project.services;
 
 import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
+import com.lxdnz.bit794.tm3.library_project.persistence.model.enums.SearchUser;
 import com.lxdnz.bit794.tm3.library_project.persistence.repos.UserRepository;
 import com.lxdnz.bit794.tm3.library_project.services.security.EncryptionService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -57,5 +61,49 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public User getCurrentUser() {
+        Authentication auth = getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        return findByUsername(name);
+    }
+
+    @Override
+    public List<User> listUserBySearchType(String searchterm, SearchUser searchUser) {
+        switch (searchUser) {
+            case ANY: {
+                return listAllUsersBySearchAll(searchterm);
+            }
+            case NAME:{
+                return listAllUsersBySearchedNames(searchterm);
+            }
+            case USERNAME:{
+                return listAllUsersBySearchedUsername(searchterm);
+            }
+            default: {
+                return listAll();
+            }
+        }
+    }
+
+    @Override
+    public List<User> listAllUsersBySearchedUsername(String string) {
+        return new ArrayList<>(userRepository.findAllByUsernameIgnoreCaseContaining(string));
+    }
+
+    @Override
+    public List<User> listAllUsersBySearchedNames(String string) {
+        return new ArrayList<>(userRepository
+                .findAllByFirstNameIgnoreCaseContainingOrLastNameIgnoreCaseContaining(
+                        string, string));
+    }
+
+    @Override
+    public List<User> listAllUsersBySearchAll(String string) {
+        return new ArrayList<>(userRepository
+                .findAllByFirstNameIgnoreCaseContainingOrLastNameIgnoreCaseContainingOrUsernameContaining(
+                        string, string, string));
     }
 }

@@ -1,6 +1,7 @@
 package com.lxdnz.bit794.tm3.library_project.web.support;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.enums.SearchBy;
+import com.lxdnz.bit794.tm3.library_project.persistence.model.enums.SearchItem;
+import com.lxdnz.bit794.tm3.library_project.persistence.model.enums.SearchUser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,7 +10,8 @@ import java.util.List;
 public class Search {
 
     private String searchterm;
-    private SearchBy searchBy;
+    private SearchItem searchItem;
+    private SearchUser searchUser;
 
     public Search() {
 
@@ -27,17 +29,31 @@ public class Search {
         this.searchterm = searchterm;
     }
 
-    public SearchBy getSearchBy() {
-        return searchBy;
+    public SearchItem getSearchItem() {
+        return searchItem;
     }
 
-    public void setSearchBy(SearchBy searchBy) {
-        this.searchBy = searchBy;
+    public void setSearchItem(SearchItem searchItem) {
+        this.searchItem = searchItem;
     }
 
-    public List<SearchBy> getSearchByList() {
-        List<SearchBy> list = new ArrayList<>();
-        Arrays.asList(SearchBy.values()).forEach(list :: add);
+    public SearchUser getSearchUser() {
+        return searchUser;
+    }
+
+    public void setSearchUser(SearchUser searchUser) {
+        this.searchUser = searchUser;
+    }
+
+    public List<SearchItem> getSearchItemList() {
+        List<SearchItem> list = new ArrayList<>();
+        Arrays.asList(SearchItem.values()).forEach(list :: add);
+        return list;
+    }
+
+    public  List<SearchUser> getSearchUserList() {
+        List<SearchUser> list = new ArrayList<>();
+        Arrays.asList(SearchUser.values()).forEach(list :: add);
         return list;
     }
 }

@@ -58,14 +58,14 @@ public class ItemController {
 
     @RequestMapping("item/{id}")
     public String showItem(@PathVariable Long id, Model model){
-        model.addAttribute("user", getUser());
+        model.addAttribute("user", userService.getCurrentUser());
         model.addAttribute("item", itemService.getById(id));
         return "itemshow";
     }
 
     @RequestMapping("item/edit/{id}")
     public String editItem(@PathVariable Long id, Model model){
-        model.addAttribute("user", getUser());
+        model.addAttribute("user", userService.getCurrentUser());
         model.addAttribute("item", itemService.getById(id));
         return "edititem";
     }
@@ -95,7 +95,7 @@ public class ItemController {
     @RequestMapping("item/reserve/{id}")
     public String reserveItem(@PathVariable Long id, Model model, Helper helper) {
         if (!userHasItemLoaned(id)) {
-            User reserveUser = getUser();
+            User reserveUser = userService.getCurrentUser();
             Item reserveItem = itemService.getById(id);
             Reservation reservation = helper.reserveItem(reserveItem, reserveUser);
             itemService.saveOrUpdate(reserveItem);
@@ -111,7 +111,7 @@ public class ItemController {
     @RequestMapping("item/checkout/{id}")
     public String checkoutItem(@PathVariable Long id) {
         Item checkoutItem = itemService.getById(id);
-        User checkoutUser = getUser();
+        User checkoutUser = userService.getCurrentUser();
         Loan newLoan = new Loan(checkoutItem, checkoutUser);
         checkoutItem.setIsRented(true);
         checkoutUser.setCurrentBalance(checkoutUser.getCurrentBalance()
@@ -137,7 +137,7 @@ public class ItemController {
 
     @RequestMapping("/loans")
     public String allLoans(Model model) {
-        model.addAttribute("user", getUser());
+        model.addAttribute("user", userService.getCurrentUser());
         model.addAttribute("loans", loanService.getActiveLoans());
 
         return "loans";
@@ -145,7 +145,7 @@ public class ItemController {
 
     @RequestMapping("/userloans")
     public String userLoans(Model model) {
-        User currentUser = getUser();
+        User currentUser = userService.getCurrentUser();
         model.addAttribute("user", currentUser);
         model.addAttribute("loans", loanService.getByUserID(currentUser.getId()));
         return "loans";
@@ -153,14 +153,14 @@ public class ItemController {
 
     @RequestMapping("/reserves")
     public String allReserves(Model model) {
-        model.addAttribute("user", getUser());
+        model.addAttribute("user", userService.getCurrentUser());
         model.addAttribute("reserves", reserveService.getActiveReserves());
         return "reserves";
     }
 
     @RequestMapping("/userreserves")
     public String userReserves(Model model) {
-        User currentUser = getUser();
+        User currentUser = userService.getCurrentUser();
         model.addAttribute("user", currentUser);
         model.addAttribute("reserves", reserveService.getByUser(currentUser));
         return "reserves";
@@ -190,17 +190,12 @@ public class ItemController {
      */
 
     private boolean userHasItemLoaned(Long id) {
-        User reserveUser = getUser();
+        User reserveUser = userService.getCurrentUser();
         Item reserveItem = itemService.getById(id);
         Loan loanCheck = loanService.getByItemID(reserveItem.getId());
         return (loanCheck != null && loanCheck.getUserID().equals(reserveUser.getId()));
     }
 
-    private User getUser() {
-        Authentication auth = getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
-        return userService.findByUsername(name);
-    }
 
     private void checkReservation(Item returnItem) {
         // check for reservation here and send to new user

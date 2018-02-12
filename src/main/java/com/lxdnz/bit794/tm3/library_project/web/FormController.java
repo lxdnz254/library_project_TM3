@@ -46,7 +46,7 @@ public class FormController {
     @RequestMapping(value = "signup", method = RequestMethod.GET)
     public String signup(Model model) {
 
-        model.addAttribute("user", getUser());
+        model.addAttribute("user", userService.getCurrentUser());
         model.addAttribute(new SignupForm());
         /*
         if (AjaxUtils.isAjaxRequest(requestedWith)) {
@@ -61,7 +61,7 @@ public class FormController {
     public String signup(@Valid @ModelAttribute SignupForm signupForm, Errors errors,
                          RedirectAttributes ra, Model model) {
         if (errors.hasErrors()) {
-            model.addAttribute("user", getUser());
+            model.addAttribute("user", userService.getCurrentUser());
             return SIGNUP_VIEW_NAME;
         }
         User user = userService.saveOrUpdate(signupForm.createUser());
@@ -69,14 +69,14 @@ public class FormController {
 
         userService.saveOrUpdate(user);
 
-        model.addAttribute("user", getUser());
+        model.addAttribute("user", userService.getCurrentUser());
         MessageHelper.addSuccessAttribute(ra, "signup.success");
         return "redirect:/";
     }
 
     @RequestMapping(value = "itemform", method = RequestMethod.GET)
     public String newItem(Model model) {
-        model.addAttribute("user", getUser());
+        model.addAttribute("user", userService.getCurrentUser());
         model.addAttribute(new ItemForm());
         /*
         if (AjaxUtils.isAjaxRequest(requestedWith)) {
@@ -91,19 +91,14 @@ public class FormController {
     public String newItem(@Valid @ModelAttribute ItemForm itemForm, Errors errors,
                           RedirectAttributes ra, Model model) {
         if (errors.hasErrors()) {
-            model.addAttribute("user", getUser());
+            model.addAttribute("user", userService.getCurrentUser());
             return NEWITEM_VIEW_NAME;
         }
         itemService.saveOrUpdate(itemForm.createItem());
-        model.addAttribute("user", getUser());
+        model.addAttribute("user", userService.getCurrentUser());
         MessageHelper.addSuccessAttribute(ra, "itemform.success");
         return "redirect:/";
     }
 
-    private User getUser() {
-        Authentication auth = getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
-        return userService.findByUsername(name);
-    }
 
 }

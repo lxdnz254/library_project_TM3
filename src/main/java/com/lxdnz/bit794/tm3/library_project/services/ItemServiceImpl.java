@@ -1,7 +1,7 @@
 package com.lxdnz.bit794.tm3.library_project.services;
 
 import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Item;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.enums.SearchBy;
+import com.lxdnz.bit794.tm3.library_project.persistence.model.enums.SearchItem;
 import com.lxdnz.bit794.tm3.library_project.persistence.repos.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,27 +33,29 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public List<Item> listAllItemsBySearchedTitle(String string) {
         List<Item> items = new ArrayList<>();
-        itemRepository.findAllByTitleContains(string).forEach(items :: add);
+        itemRepository.findAllByTitleIgnoreCaseContaining(string).forEach(items :: add);
         return items;
     }
 
     @Override
     public List<Item> listAllItemsBySearchedCreator(String string) {
         List<Item> items = new ArrayList<>();
-        itemRepository.findAllByCreatorContains(string).forEach(items :: add);
+        itemRepository.findAllByCreatorIgnoreCaseContaining(string).forEach(items :: add);
         return items;
     }
 
     @Override
     public List<Item> listAllItemsBySearchedTitleOrCreator(String string) {
         List<Item> items = new ArrayList<>();
-        itemRepository.findAllByTitleContainsOrCreatorContains(string, string).forEach(items :: add);
+        itemRepository
+                .findAllByTitleIgnoreCaseContainingOrIgnoreCaseCreatorContaining(string, string)
+                .forEach(items :: add);
         return items;
     }
 
     @Override
-    public List<Item> selectListBySearchType(String string, SearchBy searchBy) {
-        switch (searchBy) {
+    public List<Item> selectListBySearchType(String string, SearchItem searchItem) {
+        switch (searchItem) {
             case TITLE: {
                 return listAllItemsBySearchedTitle(string);
             }

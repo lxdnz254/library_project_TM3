@@ -44,6 +44,16 @@ public class Helper {
         return "User already has item on Loan, so cannot reserve";
     }
 
+    public String latestUserMessage(User user) {
+        if (user == null) {
+            return "Welcome to the Library System";
+        }
+        else
+        {
+            return "Hello " + user.getFirstName() + ", welcome to the Library system";
+        }
+    }
+
     /**
      * Loan Helper methods
      */

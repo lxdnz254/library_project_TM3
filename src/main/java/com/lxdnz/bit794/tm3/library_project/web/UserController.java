@@ -8,6 +8,7 @@ import com.lxdnz.bit794.tm3.library_project.services.LoanService;
 import com.lxdnz.bit794.tm3.library_project.services.ReserveService;
 import com.lxdnz.bit794.tm3.library_project.services.RoleService;
 import com.lxdnz.bit794.tm3.library_project.services.UserService;
+import com.lxdnz.bit794.tm3.library_project.web.support.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -51,21 +52,32 @@ public class UserController {
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String listUser(Model model) {
-        model.addAttribute("user", getUser());
+        model.addAttribute("search", new Search());
+        model.addAttribute("user", userService.getCurrentUser());
         model.addAttribute("users", userService.listAll());
         return "users";
     }
 
+    @RequestMapping(value = "/searchusers", method = RequestMethod.POST)
+    public String searchUser(Model model, Search search) {
+        model.addAttribute("searchedusers",
+                userService.listUserBySearchType(
+                        search.getSearchterm(),
+                        search.getSearchUser()
+                ));
+        return listUser(model);
+    }
+
     @RequestMapping("user/{id}")
     public String showUser(@PathVariable Long id, Model model){
-        model.addAttribute("user", getUser());
+        model.addAttribute("user", userService.getCurrentUser());
         model.addAttribute("userID", userService.getById(id));
         return "usershow";
     }
 
     @RequestMapping("user/edit/{id}")
     public String editUser(@PathVariable Long id, Model model){
-        model.addAttribute("user", getUser());
+        model.addAttribute("user", userService.getCurrentUser());
         model.addAttribute("userID", userService.getById(id));
         return "edituser";
     }
@@ -108,13 +120,6 @@ public class UserController {
         payee.setCurrentBalance(BigDecimal.ZERO);
         userService.saveOrUpdate(payee);
         return "redirect:/user/{id}";
-    }
-
-    // Gets the current logged in user
-    private User getUser() {
-        Authentication auth = getContext().getAuthentication();
-        String name = auth.getName(); //get logged in username
-        return userService.findByUsername(name);
     }
 
     private boolean userHasLoans(Long id) {
