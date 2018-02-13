@@ -1,5 +1,6 @@
 package com.lxdnz.bit794.tm3.library_project.web;
 
+import com.lxdnz.bit794.tm3.library_project.helpers.Helper;
 import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
 import com.lxdnz.bit794.tm3.library_project.services.RoleService;
 import com.lxdnz.bit794.tm3.library_project.services.UserService;
@@ -19,11 +20,15 @@ public class LoginController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(){
+    public String login(Helper helper, RedirectAttributes ra){
+        MessageHelper.addSuccessAttribute(ra, helper.loginSuccess());
         return "login";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout() { return "redirect:/"; }
+    public String logout(Helper helper, RedirectAttributes ra) {
+        MessageHelper.addSuccessAttribute(ra, helper.logout());
+        return "redirect:/";
+    }
 
 }

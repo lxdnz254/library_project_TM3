@@ -70,7 +70,7 @@ public class FormController {
         userService.saveOrUpdate(user);
 
         model.addAttribute("user", userService.getCurrentUser());
-        MessageHelper.addSuccessAttribute(ra, "signup.success");
+        MessageHelper.addSuccessAttribute(ra, "signup success");
         return "redirect:/";
     }
 
@@ -96,7 +96,7 @@ public class FormController {
         }
         itemService.saveOrUpdate(itemForm.createItem());
         model.addAttribute("user", userService.getCurrentUser());
-        MessageHelper.addSuccessAttribute(ra, "itemform.success");
+        MessageHelper.addSuccessAttribute(ra, "Added item success");
         return "redirect:/";
     }
 

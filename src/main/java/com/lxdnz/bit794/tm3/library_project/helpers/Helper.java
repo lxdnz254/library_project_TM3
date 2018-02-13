@@ -5,8 +5,13 @@ import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Reservati
 import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 @Component
 public class Helper {
+
 
     /**
      * Reservation Helper methods
@@ -44,17 +49,40 @@ public class Helper {
         return "User already has item on Loan, so cannot reserve";
     }
 
-    public String latestUserMessage(User user) {
-        if (user == null) {
-            return "Welcome to the Library System";
-        }
-        else
-        {
-            return "Hello " + user.getFirstName() + ", welcome to the Library system";
-        }
+
+    public String loginSuccess() {
+        return "Sucessfully Logged in";
+    }
+    public String searchSuccess() {
+        return "Succesful search";
     }
 
-    /**
-     * Loan Helper methods
-     */
+    public String logout() {
+        return "Logged out";
+    }
+
+    public String successCheckout(Item checkoutItem, User checkoutUser) {
+        return "User " + checkoutUser.getUsername()
+                + " has checked out item: " + checkoutItem.getTitle();
+    }
+
+    public String unreserveSuccess(Item item) {
+        return "Successfully unreserved item: " + item.getTitle();
+    }
+
+    public String successReturn(Item returnItem) {
+        return "Succesfully returned item: " + returnItem.getTitle();
+    }
+
+    public String deleteWarning() {
+        return "Item is currently reserved or on loan so cannot be deleted";
+    }
+
+    public String deleteSuccess() {
+        return "Successfully deleted Item";
+    }
+
+    public String saveItemSuccess(Item item) {
+        return "Succesfully saved item: " + item.getTitle();
+    }
 }
