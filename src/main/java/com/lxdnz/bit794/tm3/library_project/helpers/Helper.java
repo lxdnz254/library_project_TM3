@@ -62,8 +62,8 @@ public class Helper {
     }
 
     public String successCheckout(Item checkoutItem, User checkoutUser) {
-        return "User " + checkoutUser.getUsername()
-                + " has checked out item: " + checkoutItem.getTitle();
+        return "User: " + checkoutUser.getUsername()
+                + ", has checked out item: " + checkoutItem.getTitle();
     }
 
     public String unreserveSuccess(Item item) {
@@ -84,5 +84,25 @@ public class Helper {
 
     public String saveItemSuccess(Item item) {
         return "Succesfully saved item: " + item.getTitle();
+    }
+
+    public String userSearchSuccess() {
+        return "Successfully searched for users";
+    }
+
+    public String successSaveUser(User user) {
+        return "Successfully save user: " + user.getUsername();
+    }
+
+    public String deleteUserSuccess(User user) {
+        return "Successfully deleted user: " + user.getUsername();
+    }
+
+    public String deleteUserWarning(User user) {
+        return "User: " + user.getUsername() + "has current Loans or Reserves, cannot be deleted";
+    }
+
+    public String paymentSuccess(User payee) {
+        return payee.getUsername() + " has paid their outstanding fees";
     }
 }

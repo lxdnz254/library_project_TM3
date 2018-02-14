@@ -12,18 +12,18 @@
 
             <div class="col-sm-10"><h2>List of Loans</h2></div>
 
-            <table class="table table-striped">
+            <table class="table table-striped table-fixed">
                 <tr>
                     <th sec:authorize="hasAuthority('ADMIN')">User</th>
                     <th>Title</th>
-                    <th>Author/Director</th>
+                    <th class="visible-md visible-lg">Author/Director</th>
                     <th>Due Date</th>
                     <th sec:authorize="hasAnyAuthority('USER','ADMIN')">Return</th>
                 </tr>
                 <tr th:each="loan : ${loans}">
                     <td sec:authorize="hasAuthority('ADMIN')" th:text="${loan.getRequestUsername()}"><a href="/user/${user.getUserId()}">Username</a></td>
                     <td th:text="${loan.getRequestItemTitle()}">Title</td>
-                    <td th:text="${loan.getRequestItemCreator()}">Author(s)</td>
+                    <td class="visible-md visible-lg" th:text="${loan.getRequestItemCreator()}">Author(s)</td>
                     <td th:text="${loan.getWebReturnDate()}">Return Date</td>
                     <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a th:href="${'/item/return/' + loan.getItemID()}">Return</a></td>
                 </tr>

@@ -15,7 +15,7 @@
                             <div class="">
                                 <h2>Waitomo District Council Library Project</h2>
 
-                                <h3>Spring Boot Web App</h3>
+                                <h3>A Java Web Application</h3>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,14 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
                     <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li><a href="/" th:href="@{~/itemform}" sec:authorize="hasAuthority('ADMIN')">Add Item</a></li>
                         <li><a href="/" th:href="@{~/signup}" sec:authorize="hasAuthority('ADMIN')">Add User</a></li>
@@ -50,7 +57,7 @@
                         <li><a href="/" th:href="@{~/reserves}" sec:authorize="hasAuthority('ADMIN')">View Reservations</a></li>
                         <li><a href="/" th:href="@{~/userloans}" sec:authorize="hasAuthority('USER')">Your Loans</a></li>
                         <li><a href="/" th:href="@{~/userreserves}" sec:authorize="hasAuthority('USER')">Your Reservations</a></li>
-                        <li><a href="/" class="btn btn-large btn-danger" style="float: right;"
+                        <li><a href="/" class="btn btn-danger navbar-btn navbar-right"
                                th:href="@{~/console}" sec:authorize="hasAuthority('ADMIN')">Console</a></li>
                     </ul>
                 </div>
@@ -58,5 +65,6 @@
         </nav>
     </div>
 </div>
+
 </body>
 </html>

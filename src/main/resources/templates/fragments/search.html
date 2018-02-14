@@ -12,20 +12,20 @@
                        <div class="col-sm-10"><h2>List of Searched Items</h2></div>
 
                    </form>
-                   <table class="table table-striped">
+                   <table class="table table-striped table-fixed">
                        <tr>
-                           <th>Type</th>
+                           <th class="visible-md visible-lg">Type</th>
                            <th>Title</th>
-                           <th>Author(s)</th>
+                           <th class="hidden-xs">Author(s)</th>
                            <th sec:authorize="hasAnyAuthority('USER','ADMIN')">View</th>
                            <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
                            <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
                            <th sec:authorize="hasAuthority('USER')">Checkout/Reserve</th>
                        </tr>
                        <tr th:each="item : ${searcheditems}">
-                           <td th:text="${item.getItemType()}"></td>
+                           <td class="visible-md visible-lg" th:text="${item.getItemType()}"></td>
                            <td th:text="${item.getTitle()}"><a href="/item/${item.id}">Type</a>Title</td>
-                           <td th:text="${item.getCreator()}">Author(s)</td>
+                           <td class="hidden-xs" th:text="${item.getCreator()}">Author(s)</td>
                            <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a th:href="${'/item/' + item.id}">View</a></td>
                            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/item/edit/' + item.id}">Edit</a></td>
                            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/item/delete/' + item.id}">Delete</a></td>
@@ -46,20 +46,20 @@
                     <form>
                         <div class="col-sm-10"><h2>List of Items</h2></div>
                     </form>
-                    <table class="table table-striped">
+                    <table class="table table-striped table-fixed">
                         <tr>
-                            <th>Type</th>
+                            <th class="visible-md visible-lg">Type</th>
                             <th>Title</th>
-                            <th>Author(s)</th>
+                            <th class="hidden-xs">Author(s)</th>
                             <th sec:authorize="hasAnyAuthority('USER','ADMIN')">View</th>
                             <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
                             <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
                             <th sec:authorize="hasAuthority('USER')">Checkout/Reserve</th>
                         </tr>
                         <tr th:each="item : ${items}">
-                            <td th:text="${item.getItemType()}"></td>
+                            <td class="visible-md visible-lg" th:text="${item.getItemType()}"></td>
                             <td th:text="${item.getTitle()}"><a href="/item/${item.id}">Type</a>Title</td>
-                            <td th:text="${item.getCreator()}">Author(s)</td>
+                            <td class="hidden-xs" th:text="${item.getCreator()}">Author(s)</td>
                             <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a th:href="${'/item/' + item.id}">View</a></td>
                             <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/item/edit/' + item.id}">Edit</a></td>
                             <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/item/delete/' + item.id}">Delete</a></td>
@@ -79,19 +79,19 @@
                 <form>
                     <div class="col-sm-10"><h2>List of Users</h2></div>
                 </form>
-                <table class="table table-striped">
+                <table class="table table-striped table-fixed">
                     <tr>
                         <th>Username</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th class="visible-md visible-lg">First Name</th>
+                        <th class="visible-md visible-lg">Last Name</th>
                         <th sec:authorize="hasAnyAuthority('USER','ADMIN')">View</th>
                         <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
                         <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
                     </tr>
                     <tr th:each="user : ${users}">
                         <td th:text="${user.username}"><a href="/user/${user.id}">Username</a></td>
-                        <td th:text="${user.getFirstName()}">FirstName</td>
-                        <td th:text="${user.getLastName()}">LastName</td>
+                        <td class="visible-md visible-lg" th:text="${user.getFirstName()}">FirstName</td>
+                        <td class="visible-md visible-lg" th:text="${user.getLastName()}">LastName</td>
                         <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a th:href="${'/user/' + user.id}">View</a></td>
                         <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/user/edit/' + user.id}">Edit</a></td>
                         <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/user/delete/' + user.id}">Delete</a></td>
@@ -107,19 +107,19 @@
                 <form>
                     <div class="col-sm-10"><h2>Searched Users</h2></div>
                 </form>
-                <table class="table table-striped">
+                <table class="table table-striped table-fixed">
                     <tr>
                         <th>Username</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th class="visible-md visible-lg">First Name</th>
+                        <th class="visible-md visible-lg">Last Name</th>
                         <th sec:authorize="hasAnyAuthority('USER','ADMIN')">View</th>
                         <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
                         <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
                     </tr>
                     <tr th:each="user : ${searchedusers}">
                         <td th:text="${user.username}"><a href="/user/${user.id}">Username</a></td>
-                        <td th:text="${user.getFirstName()}">FirstName</td>
-                        <td th:text="${user.getLastName()}">LastName</td>
+                        <td class="visible-md visible-lg" th:text="${user.getFirstName()}">FirstName</td>
+                        <td class="visible-md visible-lg" th:text="${user.getLastName()}">LastName</td>
                         <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a th:href="${'/user/' + user.id}">View</a></td>
                         <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/user/edit/' + user.id}">Edit</a></td>
                         <td sec:authorize="hasAuthority('ADMIN')"><a th:href="${'/user/delete/' + user.id}">Delete</a></td>
