@@ -1,9 +1,9 @@
 package com.lxdnz.bit794.tm3.library_project.repositories;
 
 import com.lxdnz.bit794.tm3.library_project.configuration.RepositoryConfiguration;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Item;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.enums.ItemType;
-import com.lxdnz.bit794.tm3.library_project.persistence.repos.ItemRepository;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Item;
+import com.lxdnz.bit794.tm3.library_project.system.model.enums.ItemType;
+import com.lxdnz.bit794.tm3.library_project.database.repositorys.ItemRepository;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

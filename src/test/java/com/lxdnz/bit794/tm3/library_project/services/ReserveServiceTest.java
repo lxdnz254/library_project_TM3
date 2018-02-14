@@ -1,9 +1,9 @@
 package com.lxdnz.bit794.tm3.library_project.services;
 
-import com.lxdnz.bit794.tm3.library_project.helpers.Helper;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Item;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Reservation;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
+import com.lxdnz.bit794.tm3.library_project.web.support.Helper;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Item;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Reservation;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

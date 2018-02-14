@@ -1,4 +1,4 @@
-package com.lxdnz.bit794.tm3.library_project.persistence.converters;
+package com.lxdnz.bit794.tm3.library_project.database.converters;
 
 import org.springframework.stereotype.Component;
 

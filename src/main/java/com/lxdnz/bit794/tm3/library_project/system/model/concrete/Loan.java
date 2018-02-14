@@ -1,12 +1,10 @@
-package com.lxdnz.bit794.tm3.library_project.persistence.model.concrete;
+package com.lxdnz.bit794.tm3.library_project.system.model.concrete;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.converters.DateFormatter;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.AbstractRequest;
+import com.lxdnz.bit794.tm3.library_project.database.converters.DateFormatter;
+import com.lxdnz.bit794.tm3.library_project.system.model.AbstractRequest;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 
 @Entity

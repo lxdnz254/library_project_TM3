@@ -1,10 +1,10 @@
 package com.lxdnz.bit794.tm3.library_project.services;
 
 
-import com.lxdnz.bit794.tm3.library_project.persistence.converters.DateFormatter;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Item;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Loan;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
+import com.lxdnz.bit794.tm3.library_project.database.converters.DateFormatter;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Item;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Loan;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

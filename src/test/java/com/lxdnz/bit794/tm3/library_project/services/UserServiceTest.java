@@ -1,7 +1,7 @@
 package com.lxdnz.bit794.tm3.library_project.services;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Role;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Role;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

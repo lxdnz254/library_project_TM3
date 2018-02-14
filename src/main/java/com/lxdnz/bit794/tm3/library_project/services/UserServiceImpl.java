@@ -1,8 +1,8 @@
 package com.lxdnz.bit794.tm3.library_project.services;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.enums.SearchUser;
-import com.lxdnz.bit794.tm3.library_project.persistence.repos.UserRepository;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.User;
+import com.lxdnz.bit794.tm3.library_project.system.model.enums.SearchUser;
+import com.lxdnz.bit794.tm3.library_project.database.repositorys.UserRepository;
 import com.lxdnz.bit794.tm3.library_project.services.security.EncryptionService;
 
 import org.springframework.beans.factory.annotation.Autowired;

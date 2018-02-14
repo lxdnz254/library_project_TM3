@@ -1,6 +1,6 @@
-package com.lxdnz.bit794.tm3.library_project.persistence.model.concrete;
+package com.lxdnz.bit794.tm3.library_project.system.model.concrete;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.AbstractRequest;
+import com.lxdnz.bit794.tm3.library_project.system.model.AbstractRequest;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

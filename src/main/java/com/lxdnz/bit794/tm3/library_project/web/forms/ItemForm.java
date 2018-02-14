@@ -1,7 +1,7 @@
 package com.lxdnz.bit794.tm3.library_project.web.forms;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Item;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.enums.ItemType;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Item;
+import com.lxdnz.bit794.tm3.library_project.system.model.enums.ItemType;
 import org.hibernate.validator.constraints.NotBlank;
 
 import java.util.ArrayList;

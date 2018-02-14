@@ -1,13 +1,9 @@
-package com.lxdnz.bit794.tm3.library_project.helpers;
+package com.lxdnz.bit794.tm3.library_project.web.support;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Item;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Reservation;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Item;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Reservation;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.User;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 @Component
 public class Helper {
@@ -40,6 +36,9 @@ public class Helper {
         removeReservation.setStillReserved(false);
     }
 
+    /*
+     * String returns for the MessageHelper
+     */
     public String successReserve(Item reserveItem, User reserveUser) {
         return "User " + reserveUser.getUsername()+ " successfully reserved item: "
                 + reserveItem.getTitle();

@@ -1,6 +1,6 @@
 package com.lxdnz.bit794.tm3.library_project.web.forms;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.User;
 import org.hibernate.validator.constraints.NotBlank;
 
 import java.math.BigDecimal;

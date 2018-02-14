@@ -1,10 +1,9 @@
 package com.lxdnz.bit794.tm3.library_project.web;
 
-import com.lxdnz.bit794.tm3.library_project.helpers.Helper;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Loan;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Reservation;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Role;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
+import com.lxdnz.bit794.tm3.library_project.web.support.Helper;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Reservation;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Role;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.User;
 import com.lxdnz.bit794.tm3.library_project.services.LoanService;
 import com.lxdnz.bit794.tm3.library_project.services.ReserveService;
 import com.lxdnz.bit794.tm3.library_project.services.RoleService;
@@ -12,7 +11,6 @@ import com.lxdnz.bit794.tm3.library_project.services.UserService;
 import com.lxdnz.bit794.tm3.library_project.web.support.MessageHelper;
 import com.lxdnz.bit794.tm3.library_project.web.support.Search;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,8 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
-
-import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 @Controller
 public class UserController {

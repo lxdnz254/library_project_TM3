@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableAutoConfiguration
-@EntityScan(basePackages = {"com.lxdnz.bit794.tm3.library_project.persistence.model"})
-@EnableJpaRepositories(basePackages = {"com.lxdnz.bit794.tm3.library_project.persistence.repos"})
+@EntityScan(basePackages = {"com.lxdnz.bit794.tm3.library_project.system.model"})
+@EnableJpaRepositories(basePackages = {"com.lxdnz.bit794.tm3.library_project.database.repositorys"})
 @EnableTransactionManagement
 public class RepositoryConfiguration {
 }

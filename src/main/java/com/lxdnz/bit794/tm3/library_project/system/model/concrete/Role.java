@@ -1,6 +1,6 @@
-package com.lxdnz.bit794.tm3.library_project.persistence.model.concrete;
+package com.lxdnz.bit794.tm3.library_project.system.model.concrete;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.AbstractModelClass;
+import com.lxdnz.bit794.tm3.library_project.system.model.AbstractModelClass;
 
 import javax.persistence.*;
 import java.util.ArrayList;

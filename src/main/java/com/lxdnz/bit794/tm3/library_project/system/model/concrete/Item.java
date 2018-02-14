@@ -1,11 +1,9 @@
-package com.lxdnz.bit794.tm3.library_project.persistence.model.concrete;
+package com.lxdnz.bit794.tm3.library_project.system.model.concrete;
 
-import com.lxdnz.bit794.tm3.library_project.persistence.model.AbstractModelClass;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.enums.ItemType;
+import com.lxdnz.bit794.tm3.library_project.system.model.AbstractModelClass;
+import com.lxdnz.bit794.tm3.library_project.system.model.enums.ItemType;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.Date;
 
 @Entity
 public class Item extends AbstractModelClass {

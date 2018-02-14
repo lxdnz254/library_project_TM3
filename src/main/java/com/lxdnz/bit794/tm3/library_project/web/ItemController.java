@@ -1,10 +1,10 @@
 package com.lxdnz.bit794.tm3.library_project.web;
 
-import com.lxdnz.bit794.tm3.library_project.helpers.Helper;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Item;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Loan;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.Reservation;
-import com.lxdnz.bit794.tm3.library_project.persistence.model.concrete.User;
+import com.lxdnz.bit794.tm3.library_project.web.support.Helper;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Item;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Loan;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Reservation;
+import com.lxdnz.bit794.tm3.library_project.system.model.concrete.User;
 import com.lxdnz.bit794.tm3.library_project.services.ItemService;
 
 import com.lxdnz.bit794.tm3.library_project.services.LoanService;
@@ -12,8 +12,6 @@ import com.lxdnz.bit794.tm3.library_project.services.ReserveService;
 import com.lxdnz.bit794.tm3.library_project.services.UserService;
 import com.lxdnz.bit794.tm3.library_project.web.support.MessageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 @Controller
 public class ItemController {
