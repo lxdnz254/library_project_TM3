@@ -1,7 +1,7 @@
 package com.lxdnz.bit794.tm3.library_project.services;
 
 import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Item;
-import com.lxdnz.bit794.tm3.library_project.system.model.enums.SearchItem;
+import com.lxdnz.bit794.tm3.library_project.system.enums.SearchItem;
 import com.lxdnz.bit794.tm3.library_project.database.repositorys.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

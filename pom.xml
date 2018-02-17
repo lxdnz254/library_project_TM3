@@ -5,11 +5,11 @@
 
 	<groupId>com.lxdnz.bit794.tm3</groupId>
 	<artifactId>library_project</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0-FINAL</version>
 	<packaging>jar</packaging>
 
 	<name>library_project</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Library Application for TM3 BIT794</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

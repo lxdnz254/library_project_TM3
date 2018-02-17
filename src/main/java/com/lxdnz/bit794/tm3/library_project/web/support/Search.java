@@ -1,7 +1,7 @@
 package com.lxdnz.bit794.tm3.library_project.web.support;
 
-import com.lxdnz.bit794.tm3.library_project.system.model.enums.SearchItem;
-import com.lxdnz.bit794.tm3.library_project.system.model.enums.SearchUser;
+import com.lxdnz.bit794.tm3.library_project.system.enums.SearchItem;
+import com.lxdnz.bit794.tm3.library_project.system.enums.SearchUser;
 
 import java.util.ArrayList;
 import java.util.Arrays;

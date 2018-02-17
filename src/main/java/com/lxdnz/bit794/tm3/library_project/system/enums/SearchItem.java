@@ -1,4 +1,4 @@
-package com.lxdnz.bit794.tm3.library_project.system.model.enums;
+package com.lxdnz.bit794.tm3.library_project.system.enums;
 
 public enum SearchItem {
 

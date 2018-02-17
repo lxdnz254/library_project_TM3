@@ -1,7 +1,7 @@
 package com.lxdnz.bit794.tm3.library_project.services;
 
 import com.lxdnz.bit794.tm3.library_project.system.model.concrete.User;
-import com.lxdnz.bit794.tm3.library_project.system.model.enums.SearchUser;
+import com.lxdnz.bit794.tm3.library_project.system.enums.SearchUser;
 
 import java.util.List;
 

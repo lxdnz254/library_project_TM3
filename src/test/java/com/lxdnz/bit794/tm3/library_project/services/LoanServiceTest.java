@@ -92,7 +92,7 @@ public class LoanServiceTest {
          * for an Item or User in the DB
          */
         Loan itemLoan = loanService.getByItemID(item.getId());
-        assertEquals(itemLoan.getId(), item.getId());
+        assertEquals(itemLoan.getItemID(), item.getId());
 
         List<?> userLoans = loanService.getByUserID(user.getId());
         assertTrue(userLoans.contains(loan));

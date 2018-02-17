@@ -3,7 +3,7 @@ package com.lxdnz.bit794.tm3.library_project.bootup;
 import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Item;
 import com.lxdnz.bit794.tm3.library_project.system.model.concrete.Role;
 import com.lxdnz.bit794.tm3.library_project.system.model.concrete.User;
-import com.lxdnz.bit794.tm3.library_project.system.model.enums.ItemType;
+import com.lxdnz.bit794.tm3.library_project.system.enums.ItemType;
 import com.lxdnz.bit794.tm3.library_project.database.repositorys.ItemRepository;
 import com.lxdnz.bit794.tm3.library_project.services.RoleService;
 import com.lxdnz.bit794.tm3.library_project.services.UserService;
