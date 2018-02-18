@@ -6,6 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Interface for the Loan Repository
+ */
 public interface LoanRepository extends CrudRepository<Loan, Long> {
     List<Loan> findAllByUserID(Long userId);
     Loan findOneByItemID(Long itemId);

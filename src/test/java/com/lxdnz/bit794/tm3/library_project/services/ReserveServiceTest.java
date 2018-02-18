@@ -44,16 +44,16 @@ public class ReserveServiceTest {
         Item testItem = itemService.getById(1L);
         // get initial size of active reserves
         int activeCount = reserveService.getActiveReserves().size();
-        /**
-         *   Create Reservation method to be implemented in the System
+        /*
+            Create Reservation method to be implemented in the System
          */
         Reservation testReservation = new Reservation(testItem, testUser);
         testItem.setIsReserved(true);
         itemService.saveOrUpdate(testItem);
         reserveService.saveOrUpdate(testReservation);
 
-        /**
-         *   Assertion the saves and updates have happened
+        /*
+            Assertion the saves and updates have happened
          */
         Reservation checkTestReservationById = reserveService.getById(testReservation.getId());
         // checks the reserve is stored
@@ -61,8 +61,8 @@ public class ReserveServiceTest {
         // checks the status is true
         assertTrue(checkTestReservationById.isStillReserved());
 
-        /**
-         *   More test methods in here
+        /*
+            More test methods in here
          */
         // active Reserve tests
         List<?> activeReserves = reserveService.getActiveReserves();
@@ -96,8 +96,8 @@ public class ReserveServiceTest {
         assertNotNull(testItem);
         assertNotNull(testUser);
 
-        /**
-         *   Create Reservation by ReserveHelper
+        /*
+            Create Reservation by ReserveHelper
          */
         Reservation testReservation = helper.reserveItem(testItem, testUser);
         itemService.saveOrUpdate(testItem);
@@ -111,8 +111,8 @@ public class ReserveServiceTest {
         List<?> activeCheck = reserveService.getActiveReserves();
         assertEquals(activeCheck.size(), activeCount + 1);
 
-        /**
-         *   Remove reserve by helper
+        /*
+            Remove reserve by helper
          */
         // Get the latest version of Reservation and Item
         Reservation removeReservation = reserveService.getById(testReservation.getId());

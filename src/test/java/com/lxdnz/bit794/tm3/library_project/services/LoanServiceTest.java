@@ -49,8 +49,8 @@ public class LoanServiceTest {
         BigDecimal initialBalance = user.getCurrentBalance();
         DateFormatter dateFormatter = new DateFormatter();
 
-        /**
-         * generate Loan method
+        /*
+          generate Loan method
          */
         Loan loan = new Loan(item, user); // new loan object
         item.setIsRented(true); // flag item as loaned
@@ -104,8 +104,8 @@ public class LoanServiceTest {
         // reset activeLoans otherwise we get Optimistic locking error
         activeLoans = null;
 
-        /**
-         * Delete the loan / return the item to library
+        /*
+          Delete the loan / return the item to library
          */
         Item deleteItem = itemService.getById(item.getId());
         deleteItem.setIsRented(false);

@@ -191,14 +191,14 @@ public class ItemController {
     }
 
 
-    /**
-     * Helpers for Item actions
+    /*
+      Helpers for Item actions
      */
 
     /**
      * checks if a User has Item on loan already
-     * @param id
-     * @return
+     * @param id The id of the item to check if is on Loan
+     * @return true or false
      */
 
     private boolean userHasItemLoaned(Long id) {

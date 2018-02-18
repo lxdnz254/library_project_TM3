@@ -19,6 +19,12 @@ public class Role extends AbstractModelClass {
     @Transient
     private List<User> users = new ArrayList<>();
 
+    /**
+     * Default Role constructor
+     */
+    public Role() {
+    }
+
     public String getRole() {
         return role;
     }

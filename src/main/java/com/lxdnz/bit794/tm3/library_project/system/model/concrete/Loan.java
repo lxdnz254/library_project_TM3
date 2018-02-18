@@ -46,7 +46,6 @@ public class Loan extends AbstractRequest {
         return returnDate;
     }
 
-
     private Date createReturnDate(Item item) {
         Date d = new Date();
         d.setTime(d.getTime() + (item.getItemType().getRentalDays() * 1000 * 60 * 60 * 24));

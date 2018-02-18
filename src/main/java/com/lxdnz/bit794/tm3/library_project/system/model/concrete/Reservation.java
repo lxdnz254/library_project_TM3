@@ -28,7 +28,7 @@ public class Reservation extends AbstractRequest {
     }
 
     /**
-     * Standard constructor
+     * Default constructor
      */
     public Reservation() {
 

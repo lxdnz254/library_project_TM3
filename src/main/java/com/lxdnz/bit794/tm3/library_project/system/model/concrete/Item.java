@@ -23,6 +23,12 @@ public class Item extends AbstractModelClass {
     @Enumerated(EnumType.STRING)
     private ItemType itemType;
 
+    /**
+     * Default constructor
+     */
+    public Item() {
+
+    }
 
     public String getTitle() {
         return title;

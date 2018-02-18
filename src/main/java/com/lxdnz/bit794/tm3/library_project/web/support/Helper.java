@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 public class Helper {
 
 
-    /**
-     * Reservation Helper methods
+    /*
+      Reservation Helper methods
      */
 
     /**
      * Helper to create a new reservation of an Item
-     * @param item
-     * @param user
+     * @param item An Item object to be reserved
+     * @param user The user object reserving the Item
      * @return
      */
     public Reservation reserveItem(Item item, User user) {

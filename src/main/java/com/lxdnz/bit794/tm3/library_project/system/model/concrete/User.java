@@ -45,6 +45,13 @@ public class User extends AbstractModelClass {
     private List<Role> roles = new ArrayList<>();
     private Integer failedLoginAttempts = 0;
 
+    /**
+     * Default constructor
+     */
+    public User() {
+
+    }
+
     public String getUsername() {
         return username;
     }
