@@ -73,7 +73,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Item getById(Long id) {
-        return itemRepository.findOne(id);
+        return itemRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -83,7 +83,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void delete(Long id) {
-        itemRepository.delete(id);
+        itemRepository.deleteById(id);
     }
 
     @Override

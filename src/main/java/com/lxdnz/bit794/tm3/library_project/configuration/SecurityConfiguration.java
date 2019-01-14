@@ -25,8 +25,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(StrongPasswordEncryptor passwordEncryptor){
-        PasswordEncoder passwordEncoder = new PasswordEncoder();
+    public org.jasypt.springsecurity3.authentication.encoding.PasswordEncoder passwordEncoder(StrongPasswordEncryptor passwordEncryptor){
+        PasswordEncoder passwordEncoder = new org.jasypt.springsecurity3.authentication.encoding.PasswordEncoder();
         passwordEncoder.setPasswordEncryptor(passwordEncryptor);
         return passwordEncoder;
     }

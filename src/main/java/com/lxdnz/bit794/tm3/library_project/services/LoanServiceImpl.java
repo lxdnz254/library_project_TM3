@@ -28,7 +28,7 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public Loan getById(Long id) {
-        return loanRepository.findOne(id);
+        return loanRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public void delete(Long id) {
-        loanRepository.delete(id);
+        loanRepository.deleteById(id);
     }
 
     @Override

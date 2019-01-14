@@ -30,7 +30,7 @@ public class ReserveServiceImpl implements ReserveService {
 
     @Override
     public Reservation getById(Long id) {
-        return reserveRepository.findOne(id);
+        return reserveRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ReserveServiceImpl implements ReserveService {
 
     @Override
     public void delete(Long id) {
-        reserveRepository.delete(id);
+        reserveRepository.deleteById(id);
     }
 
     @Override
